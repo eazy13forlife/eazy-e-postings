@@ -14,14 +14,13 @@ const fetchJobData = () => {
       for (let i = 0; i < allParams.length; i++) {
         const param = allParams[i];
         const paramValue = searchParams[param];
+        //skip country because it is part of path, not a query
         if (param === "country") {
           continue;
         } else if (paramValue) {
           urlString += `&${param}=${paramValue}`;
         }
       }
-
-      console.log(urlString);
 
       const response = await axios.get(urlString);
       const results = createJobResults(response.data.results);
@@ -53,6 +52,8 @@ const createJobResults = (responseData) => {
       salary_min: minSalary = "",
       contract_time: contractTime = "",
       companyLogo = "",
+      redirect_url: redirectUrl,
+      category: { tag: categoryTag },
     } = jobInfo;
 
     const jobObject = {
@@ -65,6 +66,8 @@ const createJobResults = (responseData) => {
       minSalary,
       contractTime,
       companyLogo,
+      redirectUrl,
+      categoryTag,
     };
     resultsArray.push(jobObject);
   }

@@ -11,10 +11,7 @@ const App = () => {
     dispatch(fetchJobData());
     dispatch(fetchUserLocation());
   };
-  axios.get("http://ip-api.com/json/221.192.199.49").then((result) => {
-    console.log(result);
-  });
-  /*
+
   axios
     .get(
       "https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=92a35e33&app_key=8d6de2313330dc88848ec37ea6285db9&results_per_page=20&salary_min=15000&salary_max=99000&part_time=1"
@@ -33,9 +30,9 @@ const App = () => {
           location: { display_name: jobLocation },
           salary_max,
           salary_min = "",
-          contract_time = "",
+          redirect_url,
         } = result;
-        console.log(salary_max);
+        console.log(redirect_url);
         clearbit.NameToDomain.find({
           name: companyName,
         })
@@ -47,7 +44,7 @@ const App = () => {
           });
       }
     });
-*/
+
   return <button onClick={onButtonClick}>he</button>;
 };
 
