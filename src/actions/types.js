@@ -1,0 +1,7 @@
+const types = {
+  UPDATE_SEARCH_PARAM: "UPDATE_SEARCH_PARAM",
+  FETCH_JOB_DATA: "FETCH_JOB_DATA",
+  FETCH_USER_LOCATION: "FETCH_USER_LOCATION",
+};
+
+export default types;
