@@ -1,5 +1,10 @@
-import { updateSearchParam } from "./searchParams.js";
+import { updateSearchParam, updateCountryCode } from "./searchParams.js";
 import { fetchJobData } from "./jobRequests.js";
 import { fetchUserLocation } from "./userLocation.js";
 
-export { updateSearchParam, fetchJobData, fetchUserLocation };
+export {
+  updateSearchParam,
+  updateCountryCode,
+  fetchJobData,
+  fetchUserLocation,
+};

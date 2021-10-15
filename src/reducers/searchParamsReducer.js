@@ -14,11 +14,13 @@ const searchParams = {
 const searchParamsReducer = (state = searchParams, action) => {
   switch (action.type) {
     case types.UPDATE_SEARCH_PARAM:
-      console.log("yo");
+      console.log(action.payload.value);
       return {
-        ...searchParams,
+        ...state,
         [action.payload.param]: action.payload.value,
       };
+    case types.UPDATE_COUNTRY_CODE:
+      return { ...state, country: action.payload.value };
     default:
       return state;
   }
