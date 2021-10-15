@@ -1,0 +1,39 @@
+.Header {
+  background-color: #abedc6;
+  padding: 2rem 0rem;
+  height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  &__input-group {
+    position: relative;
+  }
+  &__input {
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem 1.5rem 1.5rem 5rem;
+    height: 100%;
+    &::placeholder {
+      font-family: var(--font-family-2);
+      font-weight: 300;
+      font-size: 1.4rem;
+      line-height: 2.1rem;
+      color: var(--color-text);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    left: 2rem;
+  }
+}

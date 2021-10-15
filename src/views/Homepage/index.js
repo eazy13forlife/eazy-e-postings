@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchJobData, fetchUserLocation } from "../../actions";
-const clearbit = require("clearbit")("sk_c5daacea98950094e1bdb4c891d21995");
+import Header from "../../components/Header/Header.js";
 
-const SearchPage = () => {
+const Homepage = () => {
   const dispatch = useDispatch();
   const userLocation = useSelector((state) => {
     return state.userLocation;
@@ -18,7 +18,11 @@ const SearchPage = () => {
     getInitialValues();
   }, []);
 
-  return <button>he</button>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
-export default SearchPage;
+export default Homepage;

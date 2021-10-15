@@ -1,13 +1,17 @@
 :root {
   --color-primary: #f6f7fb;
   --color-secondary: #1e86ff;
+  --color-tertiary: yellow;
   --color-light: white;
-
   --color-text: #334680;
   --color-shade: #b9bdcf;
 
   --font-family-1: "Roboto", sans-serif;
   --font-family-2: "Poppins", sans-serif;
+
+  --margin-extra-large: 3rem;
+  --margin-large: 1.5rem;
+  --margin-regular: 1rem;
 }
 
 html {
@@ -24,4 +28,8 @@ html {
 
 body {
   box-sizing: border-box;
+  font-family: var(--font-family-1);
+  font-size: 1.6rem;
+  color: var(--color-text);
+  background-color: var(--color-primary);
 }
