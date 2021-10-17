@@ -4,7 +4,7 @@ import "./Dropdown.scss";
 
 const Dropdown = React.forwardRef(({ title, items }, ref) => {
   let renderedItems;
-  if (items) {
+  if (items && items.length) {
     renderedItems = items.map((item, index) => {
       return (
         <li className="Dropdown__item" key={index}>
@@ -12,6 +12,8 @@ const Dropdown = React.forwardRef(({ title, items }, ref) => {
         </li>
       );
     });
+  } else if (items && !items.length) {
+    renderedItems = [<p key={1}>No Results Found</p>];
   }
 
   return (

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchJobData, fetchUserLocation } from "../../actions";
 import Header from "../../components/Header/Header.js";
 import Dropdown from "../../components/Dropdown/Dropdown.js";
+import SelectBox from "../../components/SelectBox";
+import countryCodes from "../../countryCodes.js";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -22,15 +24,8 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <Dropdown
-        title="type to select a location"
-        items={[
-          "Atlanta,Georgia",
-          "Suwanee,Georgia",
-          "Norcross,Georgia",
-          "Providence,RI",
-        ]}
-      />
+      <Dropdown title="type to select a location" items={["Atlanta,Georgia"]} />
+      <SelectBox title="Country" items={countryCodes} />
     </>
   );
 };

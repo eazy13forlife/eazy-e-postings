@@ -1,11 +1,11 @@
 const countryCodes = [
-  "gb",
   "at",
   "au",
   "br",
   "ca",
   "de",
   "fr",
+  "gb",
   "in",
   "it",
   "nl",

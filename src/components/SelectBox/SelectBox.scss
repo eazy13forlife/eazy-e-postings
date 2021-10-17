@@ -1,0 +1,37 @@
+.SelectBox {
+  width: 12rem;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  position: relative;
+  &__screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  &__icon {
+  }
+  &__list {
+    text-transform: uppercase;
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: var(--color-light);
+    height: 30rem;
+    overflow: scroll;
+    &--closed {
+      display: none;
+    }
+  }
+  &__item {
+    padding: 1rem 2rem;
+    &:first-child {
+      border-top: 1px solid var(--color-text);
+    }
+    &:hover {
+      background-color: var(--color-tertiary);
+    }
+  }
+}
