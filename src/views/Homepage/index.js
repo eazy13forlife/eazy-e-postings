@@ -24,8 +24,10 @@ const Homepage = () => {
   return (
     <>
       <Header />
+      {/*
       <Dropdown title="type to select a location" items={["Atlanta,Georgia"]} />
       <SelectBox title="Country" items={countryCodes} />
+      */}
     </>
   );
 };

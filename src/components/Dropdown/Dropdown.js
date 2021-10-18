@@ -2,12 +2,12 @@ import React from "react";
 
 import "./Dropdown.scss";
 
-const Dropdown = React.forwardRef(({ title, items }, ref) => {
+const Dropdown = React.forwardRef(({ title, items, onItemClick }, ref) => {
   let renderedItems;
   if (items && items.length) {
     renderedItems = items.map((item, index) => {
       return (
-        <li className="Dropdown__item" key={index}>
+        <li className="Dropdown__item" key={index} onClick={onItemClick}>
           {item}
         </li>
       );

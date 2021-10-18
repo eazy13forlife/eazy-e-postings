@@ -23,7 +23,7 @@ const fetchJobData = () => {
       }
 
       const response = await axios.get(urlString);
-      console.log(response);
+
       const results = createJobResults(response.data.results);
 
       dispatch({

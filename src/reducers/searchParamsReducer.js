@@ -14,7 +14,6 @@ const searchParams = {
 const searchParamsReducer = (state = searchParams, action) => {
   switch (action.type) {
     case types.UPDATE_SEARCH_PARAM:
-      console.log(action.payload.value);
       return {
         ...state,
         [action.payload.param]: action.payload.value,

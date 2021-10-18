@@ -23,7 +23,6 @@ const fetchUserLocation = () => {
 
       const { city, regionName } = ipapiResponse.data;
       const countryCode = ipapiResponse.data.countryCode.toLowerCase();
-      console.log(countryCode);
 
       //if user's countryCode isn't among the ones we can access data from,
       //set their location to Los Angeles,CA and update that in the search param

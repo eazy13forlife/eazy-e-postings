@@ -3,18 +3,21 @@ import React, { useState, useEffect, useRef } from "react";
 import "./SelectBox.scss";
 import { GiPlainArrow } from "react-icons/gi";
 
-const SelectBox = ({ items, title }) => {
+const SelectBox = ({ items, title, value, onItemClick }) => {
   const selectBoxRef = useRef();
 
   const [openSelectOptions, setOpenSelectOptions] = useState(false);
   const [screenTitle, setScreenTitle] = useState(title);
 
+  //adds event listener on our body that closes our select box options when a user
+  //clicks outside of it
   useEffect(() => {
     const renderSelectOptions = (e) => {
       if (selectBoxRef.current && !selectBoxRef.current.contains(e.target)) {
         setOpenSelectOptions(false);
       }
     };
+
     document.body.addEventListener("click", renderSelectOptions);
 
     return () => {
@@ -30,12 +33,14 @@ const SelectBox = ({ items, title }) => {
         onClick={() => {
           setOpenSelectOptions(false);
           setScreenTitle(item.toUpperCase());
+          onItemClick(item);
         }}
       >
         {item}
       </li>
     );
   });
+
   return (
     <div className="SelectBox" ref={selectBoxRef}>
       <div
@@ -44,7 +49,7 @@ const SelectBox = ({ items, title }) => {
           setOpenSelectOptions(true);
         }}
       >
-        <p>{screenTitle}</p>
+        <p>{value.toUpperCase()}</p>
         <GiPlainArrow className="SelectBox__icon" />
       </div>
       <ul
@@ -52,6 +57,7 @@ const SelectBox = ({ items, title }) => {
           openSelectOptions ? "" : "SelectBox__list--closed"
         }`}
       >
+        <li className="SelectBox__invalid-item">{title}</li>
         {renderedItems}
       </ul>
     </div>
