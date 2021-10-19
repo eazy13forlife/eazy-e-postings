@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Dropdown from "../Dropdown/Dropdown.js";
 import "./TextInput.scss";
 
 const TextInput = ({

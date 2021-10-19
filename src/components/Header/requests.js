@@ -31,7 +31,7 @@ const createLocationOptions = (result) => {
   //while amountFetched is less than 5 and we still have items in our array to iterate
   while (amountFetched < 5 && i < result.length) {
     const location = result[i];
-    const { city, country, regionCode } = location;
+    const { city, regionCode } = location;
     const countryCode = location.countryCode.toLowerCase();
     console.log(countryCode);
     if (countryCodes.includes(countryCode)) {

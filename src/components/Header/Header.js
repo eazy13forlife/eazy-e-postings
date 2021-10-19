@@ -1,36 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaRegBuilding } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
 import "./Header.scss";
 import Dropdown from "../Dropdown/Dropdown.js";
+import { fetchLocationOptions } from "./requests.js";
+import SelectBox from "../SelectBox";
+import countryCodes from "../../countryCodes.js";
+import TextInput from "../formInputs/TextInput.js";
+import {
+  updateSearchParam,
+  updateCountryCode,
+  fetchJobData,
+} from "../../actions";
 import {
   jobs,
   companies,
   locations,
 } from "../../general/staticDropdownOptions.js";
-import { fetchLocationOptions } from "./requests.js";
-import SelectBox from "../SelectBox";
-import countryCodes from "../../countryCodes.js";
-import TextInput from "../formInputs/TextInput.js";
-import { updateSearchParam, updateCountryCode } from "../../actions";
+
 const Header = () => {
-  const dropdownRef = useRef();
   const jobInputRef = useRef();
   const companyInputRef = useRef();
   const locationInputRef = useRef();
+
   const dispatch = useDispatch();
 
-  //the input name our dropdown should show for
-  const [showDropdown, setShowDropdown] = useState(null);
+  const [showDropdownFor, setShowDropdownFor] = useState(null);
   const [locationChoices, setLocationChoices] = useState(locations);
   const [locationValue, setLocationValue] = useState("");
   const [debouncedLocationValue, setDebouncedLocationValue] = useState("");
 
-  const params = useSelector((state) => {
+  const searchParams = useSelector((state) => {
     return state.searchParams;
   });
 
@@ -44,7 +47,7 @@ const Header = () => {
       });
 
       if (closeDropdown) {
-        setShowDropdown(null);
+        setShowDropdownFor(null);
       }
     };
     document.body.addEventListener("click", renderDropdown);
@@ -66,7 +69,6 @@ const Header = () => {
     };
   }, [locationValue]);
 
-  /*
   //fetches suggested location options based on user's debouncedLocationValue
   useEffect(() => {
     const getLocationOptions = async () => {
@@ -77,18 +79,17 @@ const Header = () => {
       getLocationOptions();
     }
   }, [debouncedLocationValue]);
-*/
 
-  //renders dropdown component
-  const renderDropdown = (name, title, items) => {
-    if (name === showDropdown) {
+  //renders dropdown component for our job search parameters
+  const renderDropdown = (paramName, dropTitle, dropItems) => {
+    if (paramName === showDropdownFor) {
       return (
         <Dropdown
-          ref={dropdownRef}
-          title={title}
-          items={items}
-          onItemClick={(e) => {
-            setShowDropdown(null);
+          title={dropTitle}
+          items={dropItems}
+          onItemClick={(e, paramValue) => {
+            dispatch(updateSearchParam(paramName, paramValue));
+            setShowDropdownFor(null);
             e.stopPropagation();
           }}
         />
@@ -112,27 +113,27 @@ const Header = () => {
         <div
           className="form__input-group"
           onClick={() => {
-            setShowDropdown("job type");
+            setShowDropdownFor("what");
           }}
           ref={jobInputRef}
         >
           <AiOutlineSearch className="form__icon" />
           <TextInput
             className="form__input"
-            name="job type"
+            name="what"
             placeholder="All jobs"
-            value={params.what}
+            value={searchParams.what}
             onChange={(e) => {
               dispatch(updateSearchParam("what", e.target.value));
             }}
           />
-          {renderDropdown("job type", "Popular Job Searches", jobs)}
+          {renderDropdown("what", "Popular Job Searches", jobs)}
         </div>
 
         <div
           className="form__input-group"
           onClick={() => {
-            setShowDropdown("company");
+            setShowDropdownFor("company");
           }}
           ref={companyInputRef}
         >
@@ -141,7 +142,7 @@ const Header = () => {
             className="form__input"
             name="company"
             placeholder="All Companies"
-            value={params.company}
+            value={searchParams.company}
             onChange={(e) => {
               dispatch(updateSearchParam("company", e.target.value));
             }}
@@ -156,36 +157,42 @@ const Header = () => {
             onItemClick={(code) => {
               dispatch(updateCountryCode(code));
             }}
-            value={params.country}
+            value={searchParams.country}
           />
         </div>
 
         <div
           className="form__input-group"
           onClick={() => {
-            setShowDropdown("location");
+            setShowDropdownFor("where");
           }}
           ref={locationInputRef}
         >
           <IoLocationSharp className="form__icon" />
           <TextInput
             className="form__input"
-            name="location"
+            name="where"
             placeholder="Anywhere"
-            value={params.where}
+            value={searchParams.where}
             onChange={(e) => {
               setLocationValue(e.target.value);
               dispatch(updateSearchParam("where", e.target.value));
             }}
           />
           {renderDropdown(
-            "location",
+            "where",
             "choose or search a location",
             locationChoices
           )}
         </div>
 
-        <button className="button button--primary" type="submit">
+        <button
+          className="button button--primary"
+          type="submit"
+          onSubmit={() => {
+            dispatch(fetchJobData());
+          }}
+        >
           Search
         </button>
       </form>

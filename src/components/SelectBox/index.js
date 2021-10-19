@@ -7,7 +7,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
   const selectBoxRef = useRef();
 
   const [openSelectOptions, setOpenSelectOptions] = useState(false);
-  const [screenTitle, setScreenTitle] = useState(title);
+  const [screenTitle, setScreenTitle] = useState(value);
 
   //adds event listener on our body that closes our select box options when a user
   //clicks outside of it
@@ -32,7 +32,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
         key={index}
         onClick={() => {
           setOpenSelectOptions(false);
-          setScreenTitle(item.toUpperCase());
+          setScreenTitle(item);
           onItemClick(item);
         }}
       >
@@ -49,7 +49,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
           setOpenSelectOptions(true);
         }}
       >
-        <p>{value.toUpperCase()}</p>
+        <p>{screenTitle}</p>
         <GiPlainArrow className="SelectBox__icon" />
       </div>
       <ul

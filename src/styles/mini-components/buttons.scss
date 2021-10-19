@@ -9,5 +9,8 @@
   letter-spacing: 0.2rem;
   &--primary {
     background-color: var(--color-tertiary);
+    &:hover {
+      filter: contrast(0.96);
+    }
   }
 }

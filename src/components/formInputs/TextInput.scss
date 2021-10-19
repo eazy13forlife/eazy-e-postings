@@ -4,6 +4,7 @@
   padding: 1.5rem 1.5rem 1.5rem 5rem;
   height: 100%;
   font-size: 1.4rem;
+  text-transform: capitalize;
   &::placeholder {
     font-family: var(--font-family-2);
     font-weight: 300;

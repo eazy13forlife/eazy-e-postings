@@ -2,8 +2,7 @@
   width: 30rem;
   background-color: var(--color-light);
   padding: 1.8rem 1.5rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0rem 1rem 5rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   height: 30rem;
   overflow: scroll;
   &__title {
@@ -23,7 +22,6 @@
     padding: 1.5rem;
     padding-left: 1rem;
     text-transform: capitalize;
-
     &:not(:last-child) {
       margin-bottom: var(--margin-small);
     }
