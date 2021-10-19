@@ -1,0 +1,14 @@
+main {
+  padding: 3rem;
+  background-color: #f8f8f8;
+  .container {
+    display: flex;
+    gap: 3rem;
+  }
+  .Filters {
+    flex: 0 0 30%;
+  }
+  .Results {
+    flex: 0 0 70%;
+  }
+}

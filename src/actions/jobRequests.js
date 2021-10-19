@@ -25,7 +25,7 @@ const fetchJobData = () => {
       const response = await axios.get(urlString);
 
       const results = createJobResults(response.data.results);
-
+      console.log(results);
       dispatch({
         type: types.FETCH_JOB_DATA,
         payload: results,

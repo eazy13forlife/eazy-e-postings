@@ -1,0 +1,58 @@
+.JobCard {
+  box-shadow: var(--box-shadow-2);
+  padding: 2.5rem;
+  display: flex;
+  background-color: var(--color-light);
+  gap: 2rem;
+  cursor: pointer;
+  transition: all 300ms;
+  &:hover {
+    transform: translatey(-0.2rem);
+  }
+  &__main-info {
+    flex: 0 0 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  &__company-name {
+    font-family: var(--font-family-1);
+    font-weight: 400;
+    font-size: 5rem;
+  }
+  &__title {
+    font-weight: 700;
+  }
+  &__date-contract {
+    display: flex;
+    gap: 1.3rem;
+  }
+  &__date {
+    color: var(--color-shade);
+  }
+  &__contract {
+    font-weight: 700;
+    color: #ea526f;
+  }
+  &__location-salary {
+    flex: 0 0 30%;
+  }
+  &__location-wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+  &__icon {
+    color: var(--color-shade);
+  }
+  &__location {
+    color: var(--color-shade);
+  }
+  &__salary {
+    &:first-of-type {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    color: #17b169;
+    font-weight: 700;
+  }
+}
