@@ -24,9 +24,62 @@ const Filters = () => {
       <h2 className="Filters__heading text-large-2">Job Filters</h2>
 
       <div className="Filters__group">
-        <div className="Filters__sort-by-group">
+        <p className="Filters__group-title">Sort By:</p>
+        <div
+          className="Filters__radio-container"
+          onChange={(e) => {
+            if (e.target.value === "sort_date") {
+              dispatch(updateSearchParam("full_time", ""));
+              dispatch(updateSearchParam("part_time", 1));
+            } else if (e.target.value === "full time") {
+              dispatch(updateSearchParam("part_time", ""));
+              dispatch(updateSearchParam("full_time", 1));
+            } else if (e.target.value === "both") {
+              dispatch(updateSearchParam("part_time", ""));
+              dispatch(updateSearchParam("full_time", ""));
+            }
+            dispatch(fetchJobData());
+          }}
+        >
+          <div className="Filters__radio-group">
+            <input
+              type="radio"
+              className="Filters__radio-button"
+              name="filters"
+              value="sort_date"
+              id="sort_date"
+            />
+            <label htmlFor="sort_date">Date Posted</label>
+          </div>
+          <div className="Filters__radio-group">
+            <input
+              type="radio"
+              className="Filters__radio-button"
+              name="filters"
+              value="salary_max"
+              id="salary_max"
+            />
+            <label htmlFor="salary_max">Maximum Salary</label>
+          </div>
+          <div className="Filters__radio-group">
+            <input
+              type="radio"
+              className="Filters__radio-button"
+              name="contract time"
+              value="none"
+              id="none"
+              defaultChecked
+            />
+            <label htmlFor="both">None</label>
+          </div>
+        </div>
+      </div>
+
+      <div className="Filters__group">
+        <p className="Filters__group-title">Sort By:</p>
+        <div className="Filters__checkbox-group">
           <label className="Filters__group-title" htmlFor="sort-by-date">
-            Sort by date posted:
+            Date Posted:
           </label>
           <input
             type="checkbox"

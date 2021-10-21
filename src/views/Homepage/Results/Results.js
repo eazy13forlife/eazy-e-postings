@@ -19,7 +19,8 @@ const Results = () => {
     if (jobsLoading === true || jobsLoading === null) {
       return (
         <p className="Results__fetching-jobs text-large">
-          Fetching jobs that match your criteria...
+          Fetching jobs that match your criteria. Hold on, this might take a
+          while...
         </p>
       );
     }
