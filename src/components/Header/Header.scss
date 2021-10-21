@@ -23,6 +23,7 @@
   .Dropdown {
     position: absolute;
     top: 90%;
+    z-index: 5;
   }
   .SelectBox {
     display: flex;

@@ -1,42 +1,69 @@
 import axios from "axios";
-
+import moment from "moment";
 import types from "./types.js";
 import apiInfo from "../apiInfo.js";
+
+import returnWholeNumber from "../general/returnWholeNumber.js";
+import { sortJobData } from "../actions/sort.js";
+
+const loadJobs = (boolean) => {
+  return {
+    type: types.LOAD_JOBS,
+    payload: boolean,
+  };
+};
 
 const fetchJobData = () => {
   return async (dispatch, getState) => {
     try {
+      dispatch(loadJobs(true));
       const searchParams = getState().searchParams;
-      const allParams = Object.keys(searchParams);
-      let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParams.country}/search/1?app_id=${apiInfo.adzuna.id}&app_key=${apiInfo.adzuna.key}&results_per_page=30`;
-
-      //create our urlString with the different params that actually have values
-      for (let i = 0; i < allParams.length; i++) {
-        const param = allParams[i];
-        const paramValue = searchParams[param];
-        //skip country because it is part of path, not a query
-        if (param === "country") {
-          continue;
-        } else if (paramValue) {
-          urlString += `&${param}=${paramValue}`;
-        }
-      }
-
+      const urlString = createUrlString(searchParams);
       const response = await axios.get(urlString);
-
       const results = createJobResults(response.data.results);
-      console.log(results);
+
       dispatch({
         type: types.FETCH_JOB_DATA,
         payload: results,
       });
+
+      //checks to see if it should sort the data according to any sort by filters
+      dispatch(sortJobData());
+
+      dispatch(loadJobs(false));
     } catch {
       dispatch({
         type: types.FETCH_JOB_DATA,
         payload: "error",
       });
+
+      dispatch(loadJobs(false));
     }
   };
+};
+
+const createUrlString = (searchParamsObject) => {
+  const allParams = Object.keys(searchParamsObject);
+
+  let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${apiInfo.adzuna.id}&app_key=${apiInfo.adzuna.key}&results_per_page=30`;
+
+  //create our urlString with the different params that actually have values
+  for (let i = 0; i < allParams.length; i++) {
+    const param = allParams[i];
+    let paramValue = searchParamsObject[param];
+    //searchParam value for salary can't have commas or decimals in it, so we
+    //need to format it first before setting in our url
+    if (param === "salary_min" || param === "salary_max") {
+      paramValue = returnWholeNumber(paramValue);
+    }
+    if (param === "country") {
+      //skip country because it is part of path, not part of query string
+      continue;
+    } else if (paramValue) {
+      urlString += `&${param}=${paramValue}`;
+    }
+  }
+  return urlString;
 };
 
 const createJobResults = (responseData) => {
@@ -46,7 +73,6 @@ const createJobResults = (responseData) => {
 
     const {
       company: { display_name: companyName },
-      created,
       description,
       title,
       location: { display_name: jobLocation },
@@ -57,6 +83,8 @@ const createJobResults = (responseData) => {
       redirect_url: redirectUrl,
       category: { tag: categoryTag },
     } = jobInfo;
+
+    const created = moment(jobInfo.created).valueOf();
 
     const jobObject = {
       companyName,
@@ -76,4 +104,4 @@ const createJobResults = (responseData) => {
   return resultsArray;
 };
 
-export { fetchJobData };
+export { fetchJobData, loadJobs };

@@ -14,3 +14,15 @@
     }
   }
 }
+
+.button-2 {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  &:hover {
+    transform: scalex(1.1);
+  }
+  &--primary {
+    color: var(--color-light);
+    background-color: var(--color-text);
+  }
+}

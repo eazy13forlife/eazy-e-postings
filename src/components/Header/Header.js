@@ -107,8 +107,10 @@ const Header = () => {
 
       <form
         className="form"
-        action="urlofthepageontheserverthatthisformwillgoto"
-        method="post"
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(fetchJobData());
+        }}
       >
         <div
           className="form__input-group"
@@ -186,13 +188,7 @@ const Header = () => {
           )}
         </div>
 
-        <button
-          className="button button--primary"
-          type="submit"
-          onSubmit={() => {
-            dispatch(fetchJobData());
-          }}
-        >
+        <button className="button button--primary" type="submit">
           Search
         </button>
       </form>

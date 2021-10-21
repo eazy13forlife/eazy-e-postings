@@ -3,7 +3,6 @@
   padding: 2.5rem;
   display: flex;
   background-color: var(--color-light);
-  gap: 2rem;
   cursor: pointer;
   transition: all 300ms;
   &:hover {
@@ -23,9 +22,16 @@
   &__title {
     font-weight: 700;
   }
-  &__date-contract {
+  &__location-contract {
     display: flex;
     gap: 1.3rem;
+  }
+  &__location-wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+  &__location {
+    color: var(--color-shade);
   }
   &__date {
     color: var(--color-shade);
@@ -34,25 +40,26 @@
     font-weight: 700;
     color: #ea526f;
   }
-  &__location-salary {
+  &__date-salary {
     flex: 0 0 30%;
-  }
-  &__location-wrapper {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
   }
   &__icon {
     color: var(--color-shade);
   }
-  &__location {
-    color: var(--color-shade);
+  &__salary-group {
+    display: flex;
+    flex-direction: column;
   }
   &__salary {
+    margin-left: auto;
     &:first-of-type {
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
     color: #17b169;
-    font-weight: 700;
+    font-weight: 500;
   }
 }
