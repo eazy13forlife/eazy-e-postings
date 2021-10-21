@@ -6,12 +6,13 @@ import {
   updateSearchParam,
   fetchJobData,
   sortByDate,
+  sortByMaxSalary,
   turnOnFilter,
   turnOffFilter,
   getUnsortedData,
 } from "../../../actions/";
 import { BsCurrencyDollar } from "react-icons/bs";
-import returnWholeNumber from "../../../general/returnWholeNumber.js";
+
 const Filters = () => {
   const dispatch = useDispatch();
 
@@ -19,33 +20,39 @@ const Filters = () => {
     return state.searchParams;
   });
 
+  const onFilterSelect = (e) => {
+    const value = e.target.value;
+
+    if (value === "none") {
+      dispatch(turnOffFilter());
+      dispatch(getUnsortedData());
+      return;
+    }
+
+    dispatch(turnOnFilter(value));
+
+    switch (value) {
+      case "sort_date":
+        return dispatch(sortByDate());
+      case "salary_max":
+        return dispatch(sortByMaxSalary());
+      default:
+        return;
+    }
+  };
+
   return (
     <section className="Filters">
       <h2 className="Filters__heading text-large-2">Job Filters</h2>
 
       <div className="Filters__group">
         <p className="Filters__group-title">Sort By:</p>
-        <div
-          className="Filters__radio-container"
-          onChange={(e) => {
-            if (e.target.value === "sort_date") {
-              dispatch(updateSearchParam("full_time", ""));
-              dispatch(updateSearchParam("part_time", 1));
-            } else if (e.target.value === "full time") {
-              dispatch(updateSearchParam("part_time", ""));
-              dispatch(updateSearchParam("full_time", 1));
-            } else if (e.target.value === "both") {
-              dispatch(updateSearchParam("part_time", ""));
-              dispatch(updateSearchParam("full_time", ""));
-            }
-            dispatch(fetchJobData());
-          }}
-        >
+        <div className="Filters__radio-container" onChange={onFilterSelect}>
           <div className="Filters__radio-group">
             <input
               type="radio"
               className="Filters__radio-button"
-              name="filters"
+              name="filter"
               value="sort_date"
               id="sort_date"
             />
@@ -55,7 +62,7 @@ const Filters = () => {
             <input
               type="radio"
               className="Filters__radio-button"
-              name="filters"
+              name="filter"
               value="salary_max"
               id="salary_max"
             />
@@ -65,38 +72,13 @@ const Filters = () => {
             <input
               type="radio"
               className="Filters__radio-button"
-              name="contract time"
+              name="filter"
               value="none"
               id="none"
               defaultChecked
             />
-            <label htmlFor="both">None</label>
+            <label htmlFor="none">None</label>
           </div>
-        </div>
-      </div>
-
-      <div className="Filters__group">
-        <p className="Filters__group-title">Sort By:</p>
-        <div className="Filters__checkbox-group">
-          <label className="Filters__group-title" htmlFor="sort-by-date">
-            Date Posted:
-          </label>
-          <input
-            type="checkbox"
-            name="sort-by-date"
-            id="sort-by-date"
-            className="Filters__checkbox"
-            onChange={(e) => {
-              console.log(e);
-              if (e.target.checked) {
-                dispatch(turnOnFilter("sort_date"));
-                dispatch(sortByDate());
-              } else {
-                dispatch(turnOffFilter("sort_date"));
-                dispatch(getUnsortedData());
-              }
-            }}
-          />
         </div>
       </div>
 

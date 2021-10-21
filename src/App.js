@@ -7,8 +7,12 @@ import DescriptionPage from "./views/DescriptionPage";
 const App = () => {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Homepage} />
-      <Route path="/jobs/:name" exact component={DescriptionPage} />
+      <Route path="/" exact component={(props) => <Homepage {...props} />} />
+      <Route
+        path="/jobs/:name"
+        exact
+        component={(props) => <DescriptionPage {...props} />}
+      />
     </BrowserRouter>
   );
 };

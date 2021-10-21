@@ -7,10 +7,9 @@ const turnOnFilter = (filterName) => {
   };
 };
 
-const turnOffFilter = (filterName) => {
+const turnOffFilter = () => {
   return {
     type: types.TURN_OFF_FILTER,
-    payload: filterName,
   };
 };
 

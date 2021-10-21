@@ -5,7 +5,7 @@ import jobDataReducer from "./jobDataReducer.js";
 import userLocationReducer from "./userLocationReducer.js";
 import jobsLoadingReducer from "./jobsLoadingReducer.js";
 import sortedJobDataReducer from "./sortedJobDataReducer.js";
-import jobFiltersReducer from "./jobFiltersReducer.js";
+import jobFilterReducer from "./jobFilterReducer.js";
 
 export default combineReducers({
   searchParams: searchParamsReducer,
@@ -13,5 +13,5 @@ export default combineReducers({
   userLocation: userLocationReducer,
   jobsLoading: jobsLoadingReducer,
   sortedJobData: sortedJobDataReducer,
-  jobFilters: jobFiltersReducer,
+  jobFilter: jobFilterReducer,
 });

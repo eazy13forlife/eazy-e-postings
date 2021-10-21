@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import JobCard from "../../../components/JobCard/JobCard.js";
 import "./Results.scss";
 
 const Results = () => {
-  const dispatch = useDispatch();
-
   const jobData = useSelector((state) => {
     return state.sortedJobData;
   });

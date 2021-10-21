@@ -6,6 +6,8 @@ const sortedJobDataReducer = (state = [], action) => {
       return action.payload;
     case types.SORT_BY_DATE:
       return action.payload;
+    case types.SORT_BY_MAX_SALARY:
+      return action.payload;
     case types.GET_UNSORTED_DATA:
       return action.payload;
     default:

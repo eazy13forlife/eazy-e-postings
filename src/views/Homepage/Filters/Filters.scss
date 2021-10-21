@@ -7,11 +7,17 @@
   &__heading {
     font-family: var(--font-family-2);
     font-weight: 500;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-text);
   }
 
   &__group {
     display: flex;
     flex-direction: column;
+  }
+  &__group-title {
+    font-weight: 700;
   }
   &__text-input-group {
     position: relative;
@@ -32,13 +38,13 @@
   }
   &__text-input {
     margin-top: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.8rem;
     padding-left: 3rem;
     border: 1px solid var(--color-text);
     &::placeholder {
       font-family: var(--font-family-2);
       font-weight: 300;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       line-height: 2.1rem;
       color: var(--color-text);
     }
