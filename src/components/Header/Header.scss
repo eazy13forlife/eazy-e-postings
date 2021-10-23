@@ -2,9 +2,12 @@
   background-color: #abedc6;
   padding: 2rem 0rem;
   height: 18rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .form {

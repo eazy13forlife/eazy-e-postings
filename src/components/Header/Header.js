@@ -99,99 +99,98 @@ const Header = () => {
 
   return (
     <header className="Header">
-      <div className="container">
+      <div className="container Header__container">
         <h1 className="logo">
           <span className="bold">Eazy-E</span> Postings
         </h1>
+        <form
+          className="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(fetchJobData());
+          }}
+        >
+          <div
+            className="form__input-group"
+            onClick={() => {
+              setShowDropdownFor("what");
+            }}
+            ref={jobInputRef}
+          >
+            <AiOutlineSearch className="form__icon" />
+            <TextInput
+              className="form__input"
+              name="what"
+              placeholder="All jobs"
+              value={searchParams.what}
+              onChange={(e) => {
+                dispatch(updateSearchParam("what", e.target.value));
+              }}
+            />
+            {renderDropdown("what", "Popular Job Searches", jobs)}
+          </div>
+
+          <div
+            className="form__input-group"
+            onClick={() => {
+              setShowDropdownFor("company");
+            }}
+            ref={companyInputRef}
+          >
+            <FaRegBuilding className="form__icon" />
+            <TextInput
+              className="form__input"
+              name="company"
+              placeholder="All Companies"
+              value={searchParams.company}
+              onChange={(e) => {
+                dispatch(updateSearchParam("company", e.target.value));
+              }}
+            />
+            {renderDropdown("company", "Popular Company Searches", companies)}
+          </div>
+
+          <div className="form__input-group">
+            <SelectBox
+              title="Country"
+              items={countryCodes}
+              onItemClick={(code) => {
+                dispatch(updateCountryCode(code));
+              }}
+              value={searchParams.country}
+            />
+          </div>
+
+          <div
+            className="form__input-group"
+            onClick={() => {
+              setShowDropdownFor("where");
+            }}
+            ref={locationInputRef}
+          >
+            <IoLocationSharp className="form__icon" />
+            <TextInput
+              className="form__input"
+              name="where"
+              placeholder="Anywhere"
+              value={searchParams.where}
+              onChange={(e) => {
+                setLocationValue(e.target.value);
+                dispatch(updateSearchParam("where", e.target.value));
+              }}
+            />
+            {renderDropdown(
+              "where",
+              "choose or search a location",
+              locationChoices
+            )}
+          </div>
+
+          <button className="button button--primary" type="submit">
+            Search
+          </button>
+        </form>
       </div>
-
-      <form
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(fetchJobData());
-        }}
-      >
-        <div
-          className="form__input-group"
-          onClick={() => {
-            setShowDropdownFor("what");
-          }}
-          ref={jobInputRef}
-        >
-          <AiOutlineSearch className="form__icon" />
-          <TextInput
-            className="form__input"
-            name="what"
-            placeholder="All jobs"
-            value={searchParams.what}
-            onChange={(e) => {
-              dispatch(updateSearchParam("what", e.target.value));
-            }}
-          />
-          {renderDropdown("what", "Popular Job Searches", jobs)}
-        </div>
-
-        <div
-          className="form__input-group"
-          onClick={() => {
-            setShowDropdownFor("company");
-          }}
-          ref={companyInputRef}
-        >
-          <FaRegBuilding className="form__icon" />
-          <TextInput
-            className="form__input"
-            name="company"
-            placeholder="All Companies"
-            value={searchParams.company}
-            onChange={(e) => {
-              dispatch(updateSearchParam("company", e.target.value));
-            }}
-          />
-          {renderDropdown("company", "Popular Company Searches", companies)}
-        </div>
-
-        <div className="form__input-group">
-          <SelectBox
-            title="Country"
-            items={countryCodes}
-            onItemClick={(code) => {
-              dispatch(updateCountryCode(code));
-            }}
-            value={searchParams.country}
-          />
-        </div>
-
-        <div
-          className="form__input-group"
-          onClick={() => {
-            setShowDropdownFor("where");
-          }}
-          ref={locationInputRef}
-        >
-          <IoLocationSharp className="form__icon" />
-          <TextInput
-            className="form__input"
-            name="where"
-            placeholder="Anywhere"
-            value={searchParams.where}
-            onChange={(e) => {
-              setLocationValue(e.target.value);
-              dispatch(updateSearchParam("where", e.target.value));
-            }}
-          />
-          {renderDropdown(
-            "where",
-            "choose or search a location",
-            locationChoices
-          )}
-        </div>
-
-        <button className="button button--primary" type="submit">
-          Search
-        </button>
-      </form>
     </header>
   );
 };
