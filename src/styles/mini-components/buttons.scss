@@ -40,3 +40,22 @@
     background-color: transparent;
   }
 }
+
+.button-4 {
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  &:hover {
+    transform: scalex(1.1);
+  }
+  &--active {
+    transform: translatey(0.1rem);
+  }
+  &--primary {
+    color: var(--color-light);
+    background-color: var(--color-text);
+  }
+}

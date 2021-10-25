@@ -1,0 +1,42 @@
+.DescriptionPage {
+  padding: 8rem 0rem;
+  &__container {
+    display: flex;
+  }
+  &__main-content {
+    flex: 2 0 0;
+  }
+  &__heading {
+    display: flex;
+  }
+  &__time {
+    display: flex;
+    margin-top: var(--margin-regular);
+    color: var(--color-shade);
+  }
+  &__icon {
+    margin-right: 1rem;
+  }
+  &__clock-icon {
+  }
+
+  &__company-location {
+    margin-top: var(--margin-extra-large);
+  }
+  &__company {
+    font-weight: 700;
+  }
+  &__location {
+    display: flex;
+    align-items: center;
+    color: var(--color-shade);
+    margin-top: var(--margin-regular);
+  }
+  &__description {
+    margin-top: var(--margin-extra-large);
+    width: 80%;
+  }
+  &__url {
+    flex: 1 0 0;
+  }
+}

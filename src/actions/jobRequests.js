@@ -87,7 +87,7 @@ const createJobResults = (responseData) => {
     } = jobInfo;
 
     const created = moment(jobInfo.created).valueOf();
-
+    console.log(moment(created).fromNow());
     const jobObject = {
       companyName,
       created,
