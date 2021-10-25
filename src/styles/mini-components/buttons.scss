@@ -26,3 +26,17 @@
     background-color: var(--color-text);
   }
 }
+
+.button-3 {
+  padding: 0.7rem 0.9rem;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    filter: contrast(0.9);
+  }
+  &--primary {
+    color: var(--color-text);
+    border: 2px solid var(--color-text);
+    background-color: transparent;
+  }
+}

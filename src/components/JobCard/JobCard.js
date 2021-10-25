@@ -1,9 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import moment from "moment";
-import "./JobCard.scss";
 import { GoGlobe } from "react-icons/go";
+import history from "../../history.js";
+
+import "./JobCard.scss";
+import { selectJob } from "../../actions";
 
 const JobCard = ({ data }) => {
+  const dispatch = useDispatch();
+
   const {
     companyName,
     created,
@@ -14,7 +20,11 @@ const JobCard = ({ data }) => {
     minSalary,
     contractTime,
     categoryTag,
+    adref,
   } = data;
+
+  const companyNameUrl = companyName.replace(/\s/g, "-");
+  const titleUrl = title.replace(/\s/g, "-");
 
   const renderContract = () => {
     if (contractTime === "full_time") {
@@ -28,7 +38,13 @@ const JobCard = ({ data }) => {
 
   const momentCreated = moment(created).format("MMM Do, YY");
   return (
-    <div className="JobCard">
+    <div
+      className="JobCard"
+      onClick={() => {
+        dispatch(selectJob(adref));
+        history.push(`/jobs/${companyNameUrl}/${titleUrl}`);
+      }}
+    >
       <div className="JobCard__main-info">
         <p className="JobCard__company-name text-regular">{companyName}</p>
         <h2 className="JobCard__title text-large">{title}</h2>

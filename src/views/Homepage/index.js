@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header.js";
 import Filters from "./Filters/Filters.js";
 import Results from "./Results/Results.js";
 
-import "./Homepage.scss";
+import "./index.scss";
 const Homepage = () => {
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="Homepage">
         <div className="container">
           <Filters />
           <Results />

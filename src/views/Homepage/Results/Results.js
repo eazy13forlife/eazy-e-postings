@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import JobCard from "../../../components/JobCard/JobCard.js";
 import "./Results.scss";
+import Pagination from "../../../components/Pagination/Pagination.js";
 
 const Results = () => {
   const jobData = useSelector((state) => {
@@ -35,6 +36,16 @@ const Results = () => {
       return <p className="Results__none text-large">No results found.</p>;
     }
 
+    //return our pagination component which shows our data a certain amount at a time. The data it is showing is our cardComponent
+    return (
+      <Pagination
+        data={jobData}
+        pageButtonsLimit={5}
+        dataLimit={7}
+        cardComponent={JobCard}
+      ></Pagination>
+    );
+    /*
     return jobData.map((job, index) => {
       return (
         <React.Fragment key={index}>
@@ -42,6 +53,7 @@ const Results = () => {
         </React.Fragment>
       );
     });
+    */
   };
 
   return <section className="Results text-large">{renderData()}</section>;

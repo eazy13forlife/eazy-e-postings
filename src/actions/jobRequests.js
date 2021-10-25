@@ -20,6 +20,7 @@ const fetchJobData = () => {
       const searchParams = getState().searchParams;
       const urlString = createUrlString(searchParams);
       const response = await axios.get(urlString);
+      console.log(response.data);
       const results = createJobResults(response.data.results);
 
       dispatch({
@@ -45,7 +46,7 @@ const fetchJobData = () => {
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
-  let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${apiInfo.adzuna.id}&app_key=${apiInfo.adzuna.key}&results_per_page=30`;
+  let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${apiInfo.adzuna.id}&app_key=${apiInfo.adzuna.key}&results_per_page=100`;
 
   //create our urlString with the different params that actually have values
   for (let i = 0; i < allParams.length; i++) {
@@ -75,6 +76,7 @@ const createJobResults = (responseData) => {
       company: { display_name: companyName },
       description,
       title,
+      adref,
       location: { display_name: jobLocation },
       salary_max: maxSalary = "",
       salary_min: minSalary = "",
@@ -91,6 +93,7 @@ const createJobResults = (responseData) => {
       created,
       description,
       title,
+      adref,
       jobLocation,
       maxSalary,
       minSalary,
