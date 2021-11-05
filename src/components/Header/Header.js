@@ -5,6 +5,7 @@ import { FaRegBuilding } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
 import "./Header.scss";
+import history from "../../history.js";
 import Dropdown from "../Dropdown/Dropdown.js";
 import { fetchLocationOptions } from "./requests.js";
 import SelectBox from "../SelectBox";
@@ -108,6 +109,7 @@ const Header = () => {
           onSubmit={(e) => {
             e.preventDefault();
             dispatch(fetchJobData());
+            history.push("/");
           }}
         >
           <div

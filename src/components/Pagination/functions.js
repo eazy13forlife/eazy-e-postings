@@ -1,3 +1,5 @@
+import history from "../../history.js";
+
 const goToNextPageButton = (
   totalPageButtons,
   currentPageButton,
@@ -11,6 +13,15 @@ const goToNextPageButton = (
   }
 };
 
+const updateHistoryForward = (totalPageButtons, currentPageButton) => {
+  const nextPageButton = currentPageButton + 1;
+  if (nextPageButton >= totalPageButtons) {
+    history.push(`/${totalPageButtons}`);
+  } else {
+    history.push(`/${nextPageButton}`);
+  }
+};
+
 const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
   const previousPageButton = currentPageButton - 1;
   if (previousPageButton < 1) {
@@ -20,9 +31,26 @@ const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
   }
 };
 
+const updateHistoryBackward = (currentPageButton) => {
+  const previousPageButton = currentPageButton - 1;
+  if (previousPageButton <= 1) {
+    history.push("/");
+  } else {
+    history.push(`/${previousPageButton}`);
+  }
+};
+
 const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
   if (pageNumber >= 1 && pageNumber <= totalPageButtons) {
     updateButtonFunction(pageNumber);
+  }
+};
+
+const updateHistorySpecific = (totalPageButtons, pageNumber) => {
+  if (pageNumber <= 1) {
+    history.push(`/`);
+  } else if (pageNumber <= totalPageButtons) {
+    history.push(`/${pageNumber}`);
   }
 };
 
@@ -128,4 +156,7 @@ export {
   goToPageButton,
   getPaginatedData,
   getPaginatedPagesRange,
+  updateHistoryForward,
+  updateHistoryBackward,
+  updateHistorySpecific,
 };

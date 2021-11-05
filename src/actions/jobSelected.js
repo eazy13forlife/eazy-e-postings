@@ -3,7 +3,7 @@ import types from "./types.js";
 const selectJob = (referenceId) => {
   return (dispatch, getState) => {
     const data = getState().sortedJobData;
-    const selectedJob = data.find((job) => job.adref === referenceId);
+    const selectedJob = data.find((job) => job.id === referenceId);
     dispatch({
       type: types.SELECT_JOB,
       payload: selectedJob,

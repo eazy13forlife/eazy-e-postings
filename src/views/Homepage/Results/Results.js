@@ -5,7 +5,7 @@ import JobCard from "../../../components/JobCard/JobCard.js";
 import "./Results.scss";
 import Pagination from "../../../components/Pagination/Pagination.js";
 
-const Results = () => {
+const Results = ({ currentPageButton }) => {
   const jobData = useSelector((state) => {
     return state.sortedJobData;
   });
@@ -43,17 +43,9 @@ const Results = () => {
         pageButtonsLimit={5}
         dataLimit={7}
         cardComponent={JobCard}
+        currentPageButton={currentPageButton}
       ></Pagination>
     );
-    /*
-    return jobData.map((job, index) => {
-      return (
-        <React.Fragment key={index}>
-          <JobCard data={job} />
-        </React.Fragment>
-      );
-    });
-    */
   };
 
   return <section className="Results text-large">{renderData()}</section>;

@@ -10,7 +10,12 @@ const App = () => {
     <Router history={history}>
       <Route path="/" exact component={(props) => <Homepage {...props} />} />
       <Route
-        path="/jobs/:name"
+        path="/:page"
+        exact
+        component={(props) => <Homepage {...props} />}
+      />
+      <Route
+        path="/jobs/:title+/:id"
         component={(props) => <DescriptionPage {...props} />}
       />
     </Router>

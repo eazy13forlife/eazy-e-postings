@@ -20,7 +20,7 @@ const fetchJobData = () => {
       const searchParams = getState().searchParams;
       const urlString = createUrlString(searchParams);
       const response = await axios.get(urlString);
-      console.log(response.data);
+
       const results = createJobResults(response.data.results);
 
       dispatch({
@@ -73,32 +73,32 @@ const createJobResults = (responseData) => {
     const jobInfo = responseData[i];
 
     const {
-      company: { display_name: companyName },
+      company: { display_name: companyName = "Unknown Company" },
       description,
       title,
-      adref,
+      id,
       location: { display_name: jobLocation },
       salary_max: maxSalary = "",
       salary_min: minSalary = "",
       contract_time: contractTime = "",
-      companyLogo = "",
       redirect_url: redirectUrl,
       category: { tag: categoryTag },
     } = jobInfo;
 
     const created = moment(jobInfo.created).valueOf();
-    console.log(moment(created).fromNow());
+    const state = jobInfo.location.area[0];
+
     const jobObject = {
       companyName,
       created,
       description,
       title,
-      adref,
+      id,
+      state,
       jobLocation,
       maxSalary,
       minSalary,
       contractTime,
-      companyLogo,
       redirectUrl,
       categoryTag,
     };

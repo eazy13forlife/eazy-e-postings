@@ -9,6 +9,7 @@ import "./index.scss";
 
 const DescriptionPage = () => {
   const jobSelected = useSelector((state) => state.jobSelected);
+
   const {
     companyName,
     created,
@@ -17,10 +18,15 @@ const DescriptionPage = () => {
     jobLocation,
     maxSalary,
     minSalary,
-    contractTime,
     redirectUrl,
   } = jobSelected;
 
+  let contractTime;
+  if (jobSelected.contractTime === "part_time") {
+    contractTime = "Part Time";
+  } else if (jobSelected.contractTime === "full_time") {
+    contractTime = "Full Time";
+  }
   const momentFromNow = moment(created).fromNow();
   return (
     <>
@@ -33,7 +39,11 @@ const DescriptionPage = () => {
                 <h1 className="DescriptionPage__heading text-extra-large">
                   {title}
                 </h1>
-                {contractTime ? <p text-medium>{contractTime}</p> : null}
+                {contractTime ? (
+                  <p className="text-medium DescriptionPage__contract">
+                    {contractTime}
+                  </p>
+                ) : null}
               </div>
               <div className="DescriptionPage__time">
                 <BsClock className="DescriptionPage__icon DescriptionPage__clock-icon" />
@@ -50,8 +60,22 @@ const DescriptionPage = () => {
               </div>
             </div>
             <p className="text-regular-2 DescriptionPage__description">
-              {`${description}(read more by applying on company site).`}
+              {`${description} (read more by applying on company site).`}
             </p>
+            <div className="DescriptionPage__salaries">
+              {minSalary ? (
+                <p className="text-regular-2 DescriptionPage__min-salary">
+                  Min $:{" "}
+                  <span className="DescriptionPage__salary">{minSalary}</span>
+                </p>
+              ) : null}
+              {maxSalary ? (
+                <p className="text-regular-2 DescriptionPage__max-salary">
+                  Max $:{" "}
+                  <span className="DescriptionPage__salary">{maxSalary}</span>
+                </p>
+              ) : null}
+            </div>
           </div>
           <div className="DescriptionPage__url">
             <a href={redirectUrl} target="_blank" rel="noreferrer">

@@ -38,7 +38,7 @@
   }
   &__contract {
     font-weight: 700;
-    color: #ea526f;
+    color: var(--color-contract);
   }
   &__date-salary {
     flex: 0 0 30%;
@@ -59,7 +59,7 @@
     &:first-of-type {
       margin-bottom: 1rem;
     }
-    color: #17b169;
+    color: var(--color-salary);
     font-weight: 500;
   }
 }

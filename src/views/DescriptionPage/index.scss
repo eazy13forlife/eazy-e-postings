@@ -6,8 +6,9 @@
   &__main-content {
     flex: 2 0 0;
   }
-  &__heading {
-    display: flex;
+  &__contract {
+    color: var(--color-contract);
+    margin-top: var(--margin-regular);
   }
   &__time {
     display: flex;
@@ -26,6 +27,7 @@
   &__company {
     font-weight: 700;
   }
+
   &__location {
     display: flex;
     align-items: center;
@@ -36,7 +38,18 @@
     margin-top: var(--margin-extra-large);
     width: 80%;
   }
+  &__salaries {
+    margin-top: var(--margin-extra-large);
+    display: flex;
+  }
+  &__max-salary {
+    margin-left: var(--margin-extra-large);
+  }
+  &__salary {
+    color: var(--color-salary);
+  }
   &__url {
     flex: 1 0 0;
+    margin-left: 2rem;
   }
 }

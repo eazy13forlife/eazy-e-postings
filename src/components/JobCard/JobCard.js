@@ -13,17 +13,14 @@ const JobCard = ({ data }) => {
   const {
     companyName,
     created,
-    description,
     title,
     jobLocation,
     maxSalary,
     minSalary,
     contractTime,
-    categoryTag,
-    adref,
+    id,
   } = data;
 
-  const companyNameUrl = companyName.replace(/\s/g, "-");
   const titleUrl = title.replace(/\s/g, "-");
 
   const renderContract = () => {
@@ -41,8 +38,8 @@ const JobCard = ({ data }) => {
     <div
       className="JobCard"
       onClick={() => {
-        dispatch(selectJob(adref));
-        history.push(`/jobs/${companyNameUrl}/${titleUrl}`);
+        dispatch(selectJob(id));
+        history.push(`/jobs/${titleUrl}/${id}`);
       }}
     >
       <div className="JobCard__main-info">
