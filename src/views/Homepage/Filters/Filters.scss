@@ -1,9 +1,11 @@
+@use "../../../styles/abstracts";
 .Filters {
   padding: 2.5rem;
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+
   &__heading {
     font-family: var(--font-family-2);
     font-weight: 500;
@@ -15,32 +17,53 @@
   &__group {
     display: flex;
     flex-direction: column;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      flex-direction: row;
+      align-items: center;
+      &:last-child {
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--color-text);
+      }
+    }
   }
   &__group-title {
     font-weight: 700;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      flex: 0 0 25%;
+    }
   }
   &__text-input-group {
     position: relative;
   }
   &__icon {
     position: absolute;
-    top: 65%;
+    top: 2.35rem;
     left: 1rem;
     transform: translatey(-65%);
   }
   &__button {
     align-self: start;
     margin-top: var(--margin-small);
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      align-self: stretch;
+      margin-top: var(--margin-small);
+    }
   }
 
-  &__checkbox {
-    margin-left: 1rem;
+  &__salary-inputs {
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-left: var(--margin-regular);
+    }
   }
   &__text-input {
     margin-top: 0.5rem;
     padding: 0.8rem;
     padding-left: 3rem;
     border: 1px solid var(--color-text);
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-top: var(--margin-small);
+      width: 100%;
+    }
     &::placeholder {
       font-family: var(--font-family-2);
       font-weight: 300;
@@ -49,12 +72,22 @@
       color: var(--color-text);
     }
   }
-  &__radio-container {
+  &__radios-container {
     margin-top: 0.8rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-left: var(--margin-regular);
   }
+  &__radio-group {
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      display: flex;
+      &:not(:first-child) {
+        margin-top: var(--margin-small);
+      }
+    }
+  }
+
   &__radio-button {
     margin-right: 0.5rem;
   }

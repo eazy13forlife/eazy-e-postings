@@ -79,7 +79,7 @@ const DescriptionPage = () => {
           </div>
           <div className="DescriptionPage__url">
             <a href={redirectUrl} target="_blank" rel="noreferrer">
-              <button className="button-4 button-4--primary text-medium">
+              <button className="button-4 button-4--primary text-medium DescriptionPage__button">
                 Apply on company site
               </button>
             </a>

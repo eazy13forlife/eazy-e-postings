@@ -188,7 +188,7 @@ const Header = () => {
             )}
           </div>
 
-          <button className="button button--primary" type="submit">
+          <button className="button button--primary form__button" type="submit">
             Search
           </button>
         </form>

@@ -1,3 +1,5 @@
+@use "../abstracts";
+
 .logo {
   font-family: var(--font-family-2);
   font-weight: 300;
@@ -12,6 +14,9 @@
 .text-large {
   font-size: 1.8rem;
   line-height: 2.109rem;
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    font-size: 1.6rem;
+  }
 }
 .text-large-2 {
   font-size: 2rem;

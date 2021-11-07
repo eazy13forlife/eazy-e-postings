@@ -1,3 +1,5 @@
+@use "../abstracts";
+
 .container {
   max-width: 1201px;
   padding: 0rem 3rem;
@@ -7,9 +9,15 @@
 
 .container-2 {
   max-width: 969px;
-  padding: 0rem 3rem;
+  padding: 0rem 5rem;
   margin: 0 auto;
   height: 100%;
+  @include abstracts.respondMax(500px) {
+    padding: 0rem 3rem;
+  }
+  @include abstracts.respondMax(400px) {
+    padding: 0rem 2rem;
+  }
 }
 
 .bold {

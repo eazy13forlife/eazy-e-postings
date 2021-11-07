@@ -1,7 +1,12 @@
+@use "../../styles/abstracts";
+
 .DescriptionPage {
   padding: 8rem 0rem;
   &__container {
     display: flex;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      flex-direction: column;
+    }
   }
   &__main-content {
     flex: 2 0 0;
@@ -37,6 +42,9 @@
   &__description {
     margin-top: var(--margin-extra-large);
     width: 80%;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      width: 100%;
+    }
   }
   &__salaries {
     margin-top: var(--margin-extra-large);
@@ -51,5 +59,8 @@
   &__url {
     flex: 1 0 0;
     margin-left: 2rem;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-left: 0rem;
+    }
   }
 }

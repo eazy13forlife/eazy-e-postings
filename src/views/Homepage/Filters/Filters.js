@@ -47,7 +47,7 @@ const Filters = () => {
 
       <div className="Filters__group">
         <p className="Filters__group-title">Sort By:</p>
-        <div className="Filters__radio-container" onChange={onFilterSelect}>
+        <div className="Filters__radios-container" onChange={onFilterSelect}>
           <div className="Filters__radio-group">
             <input
               type="radio"
@@ -84,48 +84,50 @@ const Filters = () => {
 
       <div className="Filters__group">
         <p className="Filters__group-title">Salary:</p>
-        <div className="Filters__text-input-group">
-          <BsCurrencyDollar className="Filters__icon" />
-          <input
-            type="text"
-            className="Filters__text-input"
-            name="minimum salary"
-            id="minimum-salary"
-            placeholder="Min Salary"
-            value={searchParams.salary_min}
-            onChange={(e) => {
-              dispatch(updateSearchParam("salary_min", e.target.value));
+        <div className="Filters__salary-inputs">
+          <div className="Filters__text-input-group">
+            <BsCurrencyDollar className="Filters__icon" />
+            <input
+              type="text"
+              className="Filters__text-input"
+              name="minimum salary"
+              id="minimum-salary"
+              placeholder="Min Salary"
+              value={searchParams.salary_min}
+              onChange={(e) => {
+                dispatch(updateSearchParam("salary_min", e.target.value));
+              }}
+            />
+          </div>
+          <div className="Filters__text-input-group">
+            <BsCurrencyDollar className="Filters__icon" />
+            <input
+              type="text"
+              name="maximum salary"
+              className="Filters__text-input Filters__text-input-max"
+              id="maximum-salary"
+              placeholder="Max Salary"
+              value={searchParams.salary_max}
+              onChange={(e) => {
+                dispatch(updateSearchParam("salary_max", e.target.value));
+              }}
+            />
+          </div>
+          <button
+            className="button-2 button-2--primary Filters__button"
+            onClick={() => {
+              dispatch(fetchJobData());
             }}
-          />
+          >
+            Go
+          </button>
         </div>
-        <div className="Filters__text-input-group">
-          <BsCurrencyDollar className="Filters__icon" />
-          <input
-            type="text"
-            name="maximum salary"
-            className="Filters__text-input"
-            id="maximum-salary"
-            placeholder="Max Salary"
-            value={searchParams.salary_max}
-            onChange={(e) => {
-              dispatch(updateSearchParam("salary_max", e.target.value));
-            }}
-          />
-        </div>
-        <button
-          className="button-2 button-2--primary Filters__button"
-          onClick={() => {
-            dispatch(fetchJobData());
-          }}
-        >
-          Go
-        </button>
       </div>
 
       <div className="Filters__group">
         <p className="Filters__group-title">Contract Time:</p>
         <div
-          className="Filters__radio-container"
+          className="Filters__radios-container"
           onChange={(e) => {
             if (e.target.value === "part time") {
               dispatch(updateSearchParam("full_time", ""));

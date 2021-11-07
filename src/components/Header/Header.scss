@@ -1,8 +1,12 @@
+@use "../../styles/abstracts";
+
 .Header {
   background-color: #abedc6;
   padding: 2rem 0rem;
   height: 18rem;
-
+  @include abstracts.respondMax(abstracts.$desktop) {
+    height: auto;
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -14,6 +18,15 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+  @include abstracts.respondMax(abstracts.$desktop) {
+    flex-wrap: wrap;
+    margin-top: var(--margin-extra-large);
+  }
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    margin-top: var(--margin-extra-large);
+  }
   &__input-group {
     position: relative;
   }
@@ -27,10 +40,26 @@
     position: absolute;
     top: 90%;
     z-index: 5;
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      width: 100%;
+    }
   }
   .SelectBox {
     display: flex;
     align-items: center;
     justify-content: center;
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      width: 100%;
+    }
+  }
+  .TextInput {
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      width: 100%;
+    }
+  }
+  &__button {
+    @include abstracts.respondMax(abstracts.$desktop) {
+      flex: 0 0 50%;
+    }
   }
 }
