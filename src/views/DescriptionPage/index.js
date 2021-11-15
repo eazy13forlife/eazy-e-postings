@@ -7,7 +7,8 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import Header from "../../components/Header/Header.js";
 import "./index.scss";
 
-const DescriptionPage = () => {
+const DescriptionPage = (ownProps) => {
+  console.log(ownProps);
   const jobSelected = useSelector((state) => state.jobSelected);
 
   const {

@@ -14,14 +14,18 @@ import {
 import { BsCurrencyDollar } from "react-icons/bs";
 
 const Filters = () => {
+  const dispatch = useDispatch();
   const [showFiltersButton, setShowFiltersButton] = useState(false);
+  const [showHideFiltersButton, setShowHideFiltersButton] = useState(false);
 
   useEffect(() => {
     const onWindowResize = (e) => {
       if (e.srcElement.innerWidth <= 760) {
         setShowFiltersButton(true);
+        setShowHideFiltersButton(true);
       } else {
         setShowFiltersButton(false);
+        setShowHideFiltersButton(false);
       }
     };
     window.addEventListener("resize", onWindowResize);
@@ -30,7 +34,6 @@ const Filters = () => {
       window.removeEventListener("resize", onWindowResize);
     };
   }, []);
-  const dispatch = useDispatch();
 
   const searchParams = useSelector((state) => {
     return state.searchParams;
@@ -204,14 +207,16 @@ const Filters = () => {
             </div>
           </div>
         </div>
-        <button
-          className="button-3 button-3--primary text-large Filters__hide-button"
-          onClick={() => {
-            setShowFiltersButton(true);
-          }}
-        >
-          Hide Job Filters
-        </button>
+        {showHideFiltersButton ? (
+          <button
+            className="button-3 button-3--primary text-large Filters__hide-button"
+            onClick={() => {
+              setShowFiltersButton(true);
+            }}
+          >
+            Hide Job Filters
+          </button>
+        ) : null}
       </div>
     </section>
   );
