@@ -8,7 +8,6 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
     &--hide {
       display: none;
     }
@@ -25,6 +24,7 @@
   &__group {
     display: flex;
     flex-direction: column;
+    margin-top: 3rem;
     @include abstracts.respondMax(abstracts.$tablet-large) {
       flex-direction: row;
       align-items: center;
@@ -76,23 +76,26 @@
       font-family: var(--font-family-2);
       font-weight: 300;
       font-size: 1.5rem;
-      line-height: 2.1rem;
+      line-height: 1.3rem;
       color: var(--color-text);
+      overflow: visible;
     }
   }
   &__radios-container {
     margin-top: 0.8rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     margin-left: var(--margin-regular);
   }
   &__radio-group {
-    @include abstracts.respondMax(abstracts.$tablet-large) {
-      display: flex;
-      &:not(:first-child) {
+    &:not(:first-child) {
+      margin-top: 0.5rem;
+      @include abstracts.respondMax(abstracts.$tablet-large) {
         margin-top: var(--margin-small);
       }
+    }
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      display: flex;
     }
   }
 

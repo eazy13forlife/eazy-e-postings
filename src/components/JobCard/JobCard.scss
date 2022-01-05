@@ -12,7 +12,9 @@
     flex: 0 0 70%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    & > * + * {
+      margin-top: 1.5rem;
+    }
   }
   &__company-name {
     font-family: var(--font-family-1);
@@ -24,14 +26,18 @@
   }
   &__location-contract {
     display: flex;
-    gap: 1.3rem;
+    align-items: center;
+  }
+  &__contract {
+    margin-left: 1.3rem;
   }
   &__location-wrapper {
     display: flex;
-    gap: 1rem;
+    align-items: center;
   }
   &__location {
     color: var(--color-shade);
+    margin-left: 1rem;
   }
   &__date {
     color: var(--color-shade);
