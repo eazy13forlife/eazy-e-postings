@@ -29,8 +29,12 @@
   }
   &__input-group {
     position: relative;
+    margin-bottom: 2rem;
     &:not(:first-child) {
       margin-left: 1rem;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        margin-left: 0rem;
+      }
     }
   }
   &__icon {
@@ -62,8 +66,12 @@
   }
   &__button {
     margin-left: 1rem;
+    margin-bottom: 2rem;
     @include abstracts.respondMax(abstracts.$desktop) {
       flex: 0 0 50%;
+    }
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      margin-left: 0rem;
     }
   }
 }
