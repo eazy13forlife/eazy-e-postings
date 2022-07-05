@@ -1,7 +1,6 @@
 import axios from "axios";
 import moment from "moment";
 import types from "./types.js";
-import apiInfo from "../apiInfo.js";
 
 import returnWholeNumber from "../general/returnWholeNumber.js";
 import { sortJobData } from "../actions/sort.js";
