@@ -21,7 +21,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,5 +51,6 @@
     "eslint-plugin-react": "^7.24.0",
     "prettier": "^2.3.2",
     "sass": "^1.36.0"
-  }
+  },
+  "engines":{"node":"16.5.0"}
 }

@@ -1,15 +1,17 @@
+@use "sass:math";
+
 $desktop: 1100px;
 $tablet-small: 600px;
 $tablet-large: 760px;
 
 @mixin respondMax($size) {
-  @media (max-width: $size/16px*1em) {
+  @media (max-width: math.div($size, 16px)*1em) {
     @content;
   }
 }
 
 @mixin respondMin($size) {
-  @media (min-width: $size/16px*1em) {
+  @media (min-width: math.div($size, 16px)*1em) {
     @content;
   }
 }
