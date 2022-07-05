@@ -16,5 +16,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, () => {
-  `Eazy-E Postings is running on port ${port}`;
+  console.log(`Eazy-E Postings is running on port ${port}`);
 });
