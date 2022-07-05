@@ -18,7 +18,7 @@ const fetchUserLocation = () => {
 
       //gets info related to user's ip address
       const ipapiResponse = await axios.get(
-        `http://ip-api.com/json/${ipAddress}`
+        `https://ip-api.com/json/${ipAddress}`
       );
 
       const { city, regionName } = ipapiResponse.data;
