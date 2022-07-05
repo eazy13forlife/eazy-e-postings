@@ -1,6 +1,4 @@
-{
-  "homepage":"http://eazy13forlife.github.io/eazy-e-postings" ,
-  "name": "react-sandbox",
+{"name": "react-sandbox",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +10,8 @@
     "express": "^4.18.1",
     "formik": "^2.2.9",
     "moment": "^2.29.1",
+    "ncu": "^0.2.1",
+    "npm-check-updates": "^15.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -27,9 +27,7 @@
     "start": "node server/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -54,7 +52,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "gh-pages": "^4.0.0",
     "prettier": "^2.3.2",
     "sass": "^1.36.0"
   },
