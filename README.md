@@ -2,6 +2,9 @@
 
 Eazy-E Postings is a fully responsive, international job search application.
 
+# Live Url
+https://eazy-e-postings.vercel.app/
+
 ## Images
 ### Desktop
 ![Screen Shot 2022-06-04 at 9 16 50 PM](https://user-images.githubusercontent.com/72288176/172034854-e0a8485d-482d-44c3-b3f2-0b60dedb5bc6.png)
