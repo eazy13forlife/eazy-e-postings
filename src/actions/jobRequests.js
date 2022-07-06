@@ -11,7 +11,7 @@ const loadJobs = (boolean) => {
     payload: boolean,
   };
 };
-
+const dog = "yes";
 const fetchJobData = () => {
   return async (dispatch, getState) => {
     try {
