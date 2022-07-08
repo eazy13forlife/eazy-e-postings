@@ -19,7 +19,6 @@ https://eazy-e-postings.vercel.app/
 * Javascript
 * SCSS
 
-
 ## Notable Features
 * Fully responsive
 * App initially populates with all relevant jobs near the user's location
