@@ -1,5 +1,4 @@
 # Eazy-E Postings
-
 Eazy-E Postings is a fully responsive, international job search application.
 
 # Live Url
