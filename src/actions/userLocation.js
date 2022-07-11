@@ -18,11 +18,11 @@ const fetchUserLocation = () => {
 
       //gets info related to user's ip address
       const ipapiResponse = await axios.get(
-        `https://ip-api.com/json/${ipAddress}`
+        `https://ipapi.co/${ipAddress}/json`
       );
 
-      const { city, regionName } = ipapiResponse.data;
-      const countryCode = ipapiResponse.data.countryCode.toLowerCase();
+      const { city, region: regionName } = ipapiResponse.data;
+      const countryCode = ipapiResponse.data.country_code.toLowerCase();
 
       //if user's countryCode isn't among the ones we can access data from,
       //set their location to Los Angeles,CA and update that in the search param
