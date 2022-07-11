@@ -1,6 +1,8 @@
 # Eazy-E Postings
-
 Eazy-E Postings is a fully responsive, international job search application.
+
+# Live Url
+https://eazy-e-postings.vercel.app/
 
 ## Images
 ### Desktop
@@ -15,7 +17,6 @@ Eazy-E Postings is a fully responsive, international job search application.
 * React Router
 * Javascript
 * SCSS
-
 
 ## Notable Features
 * Fully responsive
