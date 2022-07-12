@@ -26,7 +26,6 @@ const Homepage = (ownProps) => {
     const getInitialValues = async () => {
       await dispatch(fetchUserLocation());
       dispatch(fetchJobData());
-      console.log("why");
     };
 
     if (!sortedJobData.length) {

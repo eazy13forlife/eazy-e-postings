@@ -51,7 +51,6 @@ const createUrlString = (searchParamsObject) => {
   for (let i = 0; i < allParams.length; i++) {
     const param = allParams[i];
     let paramValue = searchParamsObject[param];
-    console.log(paramValue);
     //searchParam value for salary can't have commas or decimals in it, so we
     //need to format it first before setting in our url
     if (param === "salary_min" || param === "salary_max") {
