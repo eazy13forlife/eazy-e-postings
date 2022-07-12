@@ -23,7 +23,6 @@ const fetchLocationOptions = async (locationValue) => {
 
 //creates our array of location options that we want user to choose from
 const createLocationOptions = (result) => {
-  console.log(result);
   // we only want 5 items from our results, even if results shows 100
   let results = [];
   let i = 0; //i will iterate our result array
