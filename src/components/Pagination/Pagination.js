@@ -23,6 +23,7 @@ const Pagination = ({
   currentPageButton,
 }) => {
   //totalPageButtons tells us the total number of totalPageButtons we will need to store our data. We do Math.ceil because any decimal in regards to pages means round up
+
   const DataCard = cardComponent;
 
   const [totalPageButtons] = useState(Math.ceil(data.length / dataLimit));

@@ -45,12 +45,13 @@ const fetchJobData = () => {
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
-  let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${process.env.REACT_APP_ADZUNA_ID}&app_key=${process.env.REACT_APP_ADZUNA_KEY}&results_per_page=100`;
+  let urlString = `https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${process.env.REACT_APP_ADZUNA_ID}&app_key=${process.env.REACT_APP_ADZUNA_KEY}&results_per_page=20`;
 
   //create our urlString with the different params that actually have values
   for (let i = 0; i < allParams.length; i++) {
     const param = allParams[i];
     let paramValue = searchParamsObject[param];
+    console.log(paramValue);
     //searchParam value for salary can't have commas or decimals in it, so we
     //need to format it first before setting in our url
     if (param === "salary_min" || param === "salary_max") {
