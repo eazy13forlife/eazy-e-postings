@@ -8,11 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
     padding: 1rem;
     text-transform: uppercase;
   }
   &__icon {
+    margin-left: 1rem;
   }
   &__list {
     text-transform: uppercase;
@@ -25,6 +25,7 @@
     overflow: scroll;
     box-shadow: var(--box-shadow);
     padding: 1.8rem 1.5rem;
+    z-index: 5;
     &--closed {
       display: none;
     }
