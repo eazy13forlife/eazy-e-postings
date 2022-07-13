@@ -15,7 +15,9 @@ import { BsCurrencyDollar } from "react-icons/bs";
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const [showFiltersButton, setShowFiltersButton] = useState(false);
+  const [showFiltersButton, setShowFiltersButton] = useState(
+    window.innerWidth <= 760
+  );
   const [showHideFiltersButton, setShowHideFiltersButton] = useState(false);
 
   useEffect(() => {
