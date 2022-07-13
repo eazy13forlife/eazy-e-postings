@@ -67,6 +67,7 @@
   &__button {
     margin-left: 1rem;
     margin-bottom: 2rem;
+    color: black;
     @include abstracts.respondMax(abstracts.$desktop) {
       flex: 0 0 50%;
     }
