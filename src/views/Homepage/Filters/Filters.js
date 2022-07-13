@@ -18,7 +18,9 @@ const Filters = () => {
   const [showFiltersButton, setShowFiltersButton] = useState(
     window.innerWidth <= 760
   );
-  const [showHideFiltersButton, setShowHideFiltersButton] = useState(false);
+  const [showHideFiltersButton, setShowHideFiltersButton] = useState(
+    window.innerWidth <= 760
+  );
 
   useEffect(() => {
     const onWindowResize = (e) => {
