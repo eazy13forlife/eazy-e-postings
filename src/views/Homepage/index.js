@@ -28,9 +28,7 @@ const Homepage = (ownProps) => {
       dispatch(fetchJobData());
     };
 
-    if (!sortedJobData.length) {
-      getInitialValues();
-    }
+    getInitialValues();
   }, []);
 
   return (

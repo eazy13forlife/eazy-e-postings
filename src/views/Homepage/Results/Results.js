@@ -19,8 +19,8 @@ const Results = ({ currentPageButton }) => {
       return (
         <>
           <p className="Results__fetching-jobs text-large">
-            Fetching jobs that match your criteria. Hold on, this might take a
-            while...
+            Fetching jobs tailored around your criteria. Hold on, this might
+            take a while...
           </p>
           <Pagination
             data={jobData}

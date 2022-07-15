@@ -27,6 +27,9 @@
       }
     }
   }
+  &__fetching-jobs {
+    margin-bottom: 1rem;
+  }
 
   .Pagination__button.Pagination__button--selected {
     background-color: var(--color-tertiary);
