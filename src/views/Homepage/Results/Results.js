@@ -17,10 +17,19 @@ const Results = ({ currentPageButton }) => {
   const renderData = () => {
     if (jobsLoading === true || jobsLoading === null) {
       return (
-        <p className="Results__fetching-jobs text-large">
-          Fetching jobs that match your criteria. Hold on, this might take a
-          while...
-        </p>
+        <>
+          <p className="Results__fetching-jobs text-large">
+            Fetching jobs that match your criteria. Hold on, this might take a
+            while...
+          </p>
+          <Pagination
+            data={jobData}
+            pageButtonsLimit={5}
+            dataLimit={7}
+            cardComponent={JobCard}
+            currentPageButton={currentPageButton}
+          ></Pagination>
+        </>
       );
     }
 
