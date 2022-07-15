@@ -19,7 +19,6 @@ const fetchJobData = () => {
       const searchParams = getState().searchParams;
       const urlString = createUrlString(searchParams);
       const response = await axios.get(urlString);
-
       const results = createJobResults(response.data.results);
 
       dispatch({
