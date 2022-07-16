@@ -15,24 +15,6 @@ const Results = ({ currentPageButton }) => {
   });
 
   const renderData = () => {
-    if (jobsLoading === true || jobsLoading === null) {
-      return (
-        <>
-          <p className="Results__fetching-jobs text-large">
-            Fetching jobs tailored around your criteria. Hold on, this might
-            take a while...
-          </p>
-          <Pagination
-            data={jobData}
-            pageButtonsLimit={5}
-            dataLimit={7}
-            cardComponent={JobCard}
-            currentPageButton={currentPageButton}
-          ></Pagination>
-        </>
-      );
-    }
-
     if (jobData === "error") {
       return (
         <p className="Results__error text-large">
@@ -47,13 +29,21 @@ const Results = ({ currentPageButton }) => {
 
     //return our pagination component which shows our data a certain amount at a time. The data it is showing is our cardComponent
     return (
-      <Pagination
-        data={jobData}
-        pageButtonsLimit={5}
-        dataLimit={7}
-        cardComponent={JobCard}
-        currentPageButton={currentPageButton}
-      ></Pagination>
+      <>
+        {jobsLoading === true || jobsLoading === null ? (
+          <p className="Results__fetching-jobs text-large">
+            Fetching jobs tailored around your criteria. Hold on, this might
+            take a while...
+          </p>
+        ) : null}
+        <Pagination
+          data={jobData}
+          pageButtonsLimit={5}
+          dataLimit={7}
+          cardComponent={JobCard}
+          currentPageButton={currentPageButton}
+        ></Pagination>
+      </>
     );
   };
 

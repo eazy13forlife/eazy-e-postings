@@ -22,13 +22,19 @@ const Homepage = (ownProps) => {
     return state.sortedJobData;
   });
 
+  const userLocation = useSelector((state) => {
+    return state.userLocation;
+  });
+
   useEffect(() => {
     const getInitialValues = async () => {
       await dispatch(fetchUserLocation());
       dispatch(fetchJobData());
     };
 
-    getInitialValues();
+    if (!userLocation) {
+      getInitialValues();
+    }
   }, []);
 
   return (
