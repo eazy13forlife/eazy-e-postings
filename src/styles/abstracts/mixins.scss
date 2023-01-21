@@ -3,6 +3,7 @@
 $desktop: 1100px;
 $tablet-small: 600px;
 $tablet-large: 760px;
+$mobile-large: 450px;
 
 @mixin respondMax($size) {
   @media (max-width: math.div($size, 16px) * 1em) {
