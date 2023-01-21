@@ -1,3 +1,5 @@
+@use "../../styles/abstracts";
+
 .JobCard {
   box-shadow: var(--box-shadow-2);
   padding: 2.5rem;
@@ -7,6 +9,9 @@
   transition: all 300ms;
   &:hover {
     transform: translatey(-0.2rem);
+  }
+  @include abstracts.respondMax(450px) {
+    padding: 2.5rem 1.5rem;
   }
   &__main-info {
     flex: 0 0 70%;

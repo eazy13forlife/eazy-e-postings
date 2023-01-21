@@ -63,4 +63,9 @@
       margin-left: 0rem;
     }
   }
+  &__button {
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-top: 3rem;
+    }
+  }
 }
