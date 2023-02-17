@@ -12,6 +12,8 @@
   }
   @include abstracts.respondMax(abstracts.$mobile-large) {
     padding: 1.8rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
   }
   &__main-info {
     flex: 0 0 70%;
@@ -32,9 +34,16 @@
   &__location-contract {
     display: flex;
     align-items: center;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      display: block;
+    }
   }
   &__contract {
     margin-left: 1.3rem;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      margin-left: 0rem;
+      margin-top: 1.5rem;
+    }
   }
   &__location-wrapper {
     display: flex;
@@ -57,6 +66,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      flex-direction: row;
+      align-items: center;
+    }
   }
   &__icon {
     color: var(--color-shade);

@@ -9,7 +9,7 @@ import {
   sortByMaxSalary,
   turnOnFilter,
   turnOffFilter,
-  getUnsortedData,
+  getUnsortedJobData,
 } from "../../../actions/";
 import { BsCurrencyDollar } from "react-icons/bs";
 
@@ -53,7 +53,7 @@ const Filters = () => {
     if (value === "none") {
       dispatch(turnOffFilter());
 
-      dispatch(getUnsortedData());
+      dispatch(getUnsortedJobData());
 
       return;
     }

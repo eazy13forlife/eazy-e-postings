@@ -62,15 +62,15 @@ const sortByMaxSalary = () => {
   };
 };
 
-const getUnsortedData = () => {
+const getUnsortedJobData = () => {
   return async (dispatch, getState) => {
     const jobData = getState().jobData;
 
     dispatch({
-      type: types.GET_UNSORTED_DATA,
+      type: types.GET_UNSORTED_JOB_DATA,
       payload: jobData,
     });
   };
 };
 
-export { sortJobData, sortByDate, sortByMaxSalary, getUnsortedData };
+export { sortJobData, sortByDate, sortByMaxSalary, getUnsortedJobData };

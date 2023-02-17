@@ -251,7 +251,7 @@ const sortedJobDataReducer = (state = initialJobData, action) => {
       return action.payload;
     case types.SORT_BY_MAX_SALARY:
       return action.payload;
-    case types.GET_UNSORTED_DATA:
+    case types.GET_UNSORTED_JOB_DATA:
       return action.payload;
     default:
       return state;
