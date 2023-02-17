@@ -21,7 +21,7 @@ const DescriptionPage = () => {
     if (!jobSelected) {
       timerId = setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1500);
     }
 
     return () => {
