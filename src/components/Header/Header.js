@@ -82,7 +82,6 @@ const Header = () => {
   useEffect(() => {
     const getLocationOptions = async () => {
       const result = await fetchLocationOptions(debouncedLocationValue);
-
       setLocationChoices(result);
     };
 
