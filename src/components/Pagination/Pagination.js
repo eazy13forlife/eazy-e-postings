@@ -74,7 +74,7 @@ const Pagination = ({
     <React.Fragment>
       <div className="Pagination__data">{renderedData}</div>
 
-      <div className="Pagination__buttons-group">
+      <div className="Pagination__page-group">
         <BiLeftArrow
           className="Pagination__icon Pagination__button"
           onClick={() => {
