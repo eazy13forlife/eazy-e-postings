@@ -2,13 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { GoGlobe } from "react-icons/go";
-import history from "../../history.js";
+import { useNavigate } from "react-router-dom";
 
 import "./JobCard.scss";
 import { selectJob } from "../../actions";
 
 const JobCard = ({ data }) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const {
     companyName,
@@ -40,7 +42,7 @@ const JobCard = ({ data }) => {
       className="JobCard"
       onClick={() => {
         dispatch(selectJob(id));
-        history.push(`/jobs/${titleUrl}/${id}`);
+        navigate(`/jobs/${titleUrl}/${id}`);
       }}
     >
       <div className="JobCard__main-info">

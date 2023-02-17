@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   goToNextPageButton,
@@ -20,6 +21,8 @@ const Pagination = ({
   cardComponent,
   currentPageButton,
 }) => {
+  const navigate = useNavigate();
+
   const DataCard = cardComponent;
 
   //the total number of totalPageButtons we will need to store our data. We do Math.ceil because any decimal in regards to pages means round up
@@ -58,7 +61,7 @@ const Pagination = ({
         }`}
         onClick={() => {
           goToPageButton(totalPageButtons, pageNumber, setPageButton);
-          updateHistorySpecific(totalPageButtons, pageNumber);
+          updateHistorySpecific(totalPageButtons, pageNumber, navigate);
         }}
       >
         {pageNumber}
@@ -74,7 +77,7 @@ const Pagination = ({
           className="Pagination__icon Pagination__button"
           onClick={() => {
             goToPreviousPageButton(pageButton, setPageButton);
-            updateHistoryBackward(pageButton);
+            updateHistoryBackward(pageButton, navigate);
           }}
         />
         {renderedPagesRange}
@@ -82,7 +85,7 @@ const Pagination = ({
           className="Pagination__icon Pagination__button "
           onClick={() => {
             goToNextPageButton(totalPageButtons, pageButton, setPageButton);
-            updateHistoryForward(totalPageButtons, pageButton);
+            updateHistoryForward(totalPageButtons, pageButton, navigate);
           }}
         />
       </div>

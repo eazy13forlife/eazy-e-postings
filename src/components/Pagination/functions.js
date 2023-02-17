@@ -1,5 +1,3 @@
-import history from "../../history.js";
-
 const goToNextPageButton = (
   totalPageButtons,
   currentPageButton,
@@ -12,12 +10,12 @@ const goToNextPageButton = (
   updateButtonFunction(newPageButton);
 };
 
-const updateHistoryForward = (totalPageButtons, currentPageButton) => {
+const updateHistoryForward = (totalPageButtons, currentPageButton, update) => {
   const nextPageButton = currentPageButton + 1;
 
   const newPageButton = Math.min(nextPageButton, totalPageButtons);
 
-  history.push(`/${newPageButton}`);
+  update(`/${newPageButton}`);
 };
 
 const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
@@ -28,12 +26,12 @@ const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
   updateButtonFunction(newPageButton);
 };
 
-const updateHistoryBackward = (currentPageButton) => {
+const updateHistoryBackward = (currentPageButton, update) => {
   const previousPageButton = currentPageButton - 1;
 
   const newPageButton = Math.max(1, previousPageButton);
 
-  history.push(`/${newPageButton}`);
+  update(`/${newPageButton}`);
 };
 
 const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
@@ -42,13 +40,13 @@ const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
   }
 };
 
-const updateHistorySpecific = (totalPageButtons, pageNumber) => {
+const updateHistorySpecific = (totalPageButtons, pageNumber, update) => {
   if (pageNumber <= 1) {
-    history.push(`/`);
+    update(`/`);
   }
 
   if (pageNumber <= totalPageButtons) {
-    history.push(`/${pageNumber}`);
+    update(`/${pageNumber}`);
   }
 };
 

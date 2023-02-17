@@ -1,25 +1,18 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
-import history from "./history.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Homepage from "./views/Homepage";
 import DescriptionPage from "./views/DescriptionPage";
 
 const App = () => {
   return (
-    <Router history={history}>
-      <Route path="/" exact component={(props) => <Homepage {...props} />} />
-      <Route
-        path="/:page"
-        exact
-        component={(props) => <Homepage {...props} />}
-      />
-      <Route
-        exact
-        path="/jobs/:title+/:id"
-        component={(props) => <DescriptionPage {...props} />}
-      />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/:page" element={<Homepage />} />
+        <Route path="/jobs/:title+/:id" element={<DescriptionPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

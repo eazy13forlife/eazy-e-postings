@@ -5,7 +5,7 @@ import { FaRegBuilding } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
 import "./Header.scss";
-import history from "../../history.js";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown.js";
 import { fetchLocationOptions } from "./requests.js";
 import SelectBox from "../SelectBox";
@@ -23,6 +23,8 @@ import {
 } from "../../general/staticDropdownOptions.js";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const jobInputRef = useRef();
@@ -113,7 +115,7 @@ const Header = () => {
         <h1
           className="logo"
           onClick={() => {
-            history.push("/");
+            navigate("/");
           }}
         >
           <span className="bold">Eazy-E</span> Postings
@@ -124,7 +126,7 @@ const Header = () => {
           onSubmit={(e) => {
             e.preventDefault();
             dispatch(fetchJobData());
-            history.push("/");
+            navigate("/");
           }}
         >
           <div

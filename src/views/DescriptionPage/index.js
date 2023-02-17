@@ -1,5 +1,5 @@
 import React from "react";
-import history from "../../history";
+
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { BsClock } from "react-icons/bs";
@@ -10,10 +10,6 @@ import "./index.scss";
 
 const DescriptionPage = () => {
   const jobSelected = useSelector((state) => state.jobSelected);
-
-  if (!jobSelected) {
-    history.push("/");
-  }
 
   const {
     companyName,
