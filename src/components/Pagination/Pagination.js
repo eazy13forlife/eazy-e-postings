@@ -25,7 +25,7 @@ const Pagination = ({
 
   const DataCard = cardComponent;
 
-  //the total number of totalPageButtons we will need to store our data. We do Math.ceil because any decimal in regards to pages means round up
+  //the total number of totalPageButtons we will need to store our data
   const [totalPageButtons] = useState(Math.ceil(data.length / dataLimit));
 
   const [pageButton, setPageButton] = useState(currentPageButton);
@@ -35,7 +35,7 @@ const Pagination = ({
     setPageButton(currentPageButton);
   }, [currentPageButton]);
 
-  //all the rendered job depending on page we're on and data limit
+  //all the rendered jobs depending on the page we're on and the data limit
   const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
     (job, index) => {
       return (
@@ -46,6 +46,7 @@ const Pagination = ({
     }
   );
 
+  //get all the rendered page buttons
   const renderedPagesRange = getPaginatedPagesRange(
     totalPageButtons,
     pageButtonsLimit,
@@ -72,7 +73,8 @@ const Pagination = ({
   return (
     <React.Fragment>
       <div className="Pagination__data">{renderedData}</div>
-      <div className="Pagination__page-group">
+
+      <div className="Pagination__buttons-group">
         <BiLeftArrow
           className="Pagination__icon Pagination__button"
           onClick={() => {
