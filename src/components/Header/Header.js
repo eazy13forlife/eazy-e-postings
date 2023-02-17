@@ -23,26 +23,32 @@ import {
 } from "../../general/staticDropdownOptions.js";
 
 const Header = () => {
-  const jobInputRef = useRef();
-  const companyInputRef = useRef();
-  const locationInputRef = useRef();
-
   const dispatch = useDispatch();
 
+  const jobInputRef = useRef();
+
+  const companyInputRef = useRef();
+
+  const locationInputRef = useRef();
+
   const [showDropdownFor, setShowDropdownFor] = useState(null);
+
   const [locationChoices, setLocationChoices] = useState(locations);
+
   const [locationValue, setLocationValue] = useState("");
+
   const [debouncedLocationValue, setDebouncedLocationValue] = useState("");
 
   const searchParams = useSelector((state) => {
     return state.searchParams;
   });
 
-  //adds event listener on our body for closing dropdown component when user
-  //clicks outside of it and outside of the text input that renders the dropdown
+  //adds event listener on our body for closing all dropdown components when user
+  //clicks outside of them
   useEffect(() => {
-    const renderDropdown = (e) => {
+    const closeDropdownsOutsideClick = (e) => {
       const refs = [jobInputRef, companyInputRef, locationInputRef];
+
       const closeDropdown = refs.every((ref) => {
         return ref.current && !ref.current.contains(e.target);
       });
@@ -51,10 +57,12 @@ const Header = () => {
         setShowDropdownFor(null);
       }
     };
-    document.body.addEventListener("click", renderDropdown);
+
+    //if we are not clicking on any of the dropdowns, close them all if open
+    document.body.addEventListener("click", closeDropdownsOutsideClick);
 
     return () => {
-      document.body.removeEventListener("click", renderDropdown);
+      document.body.removeEventListener("click", closeDropdownsOutsideClick);
     };
   }, []);
 
@@ -63,7 +71,7 @@ const Header = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedLocationValue(locationValue);
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(timerId);
@@ -74,8 +82,10 @@ const Header = () => {
   useEffect(() => {
     const getLocationOptions = async () => {
       const result = await fetchLocationOptions(debouncedLocationValue);
+
       setLocationChoices(result);
     };
+
     if (debouncedLocationValue) {
       getLocationOptions();
     }
@@ -104,6 +114,7 @@ const Header = () => {
         <h1 className="logo">
           <span className="bold">Eazy-E</span> Postings
         </h1>
+
         <form
           className="form"
           onSubmit={(e) => {

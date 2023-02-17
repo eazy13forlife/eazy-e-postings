@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import countryCodes from "../../countryCodes.js";
 
 //fetches location results based on user's location search value
@@ -15,6 +16,7 @@ const fetchLocationOptions = async (locationValue) => {
         params: { namePrefix: locationValue },
       }
     );
+
     return createLocationOptions(response.data.data);
   } catch {
     return [];
@@ -25,21 +27,29 @@ const fetchLocationOptions = async (locationValue) => {
 const createLocationOptions = (result) => {
   // we only want 5 items from our results, even if results shows 100
   let results = [];
-  let i = 0; //i will iterate our result array
-  let amountFetched = 0; //keeps track of the actual items we have collected
-  //while amountFetched is less than 5 and we still have items in our array to iterate
+
+  //i will iterate our result array
+  let i = 0;
+
+  //keeps track of the actual items we have collected
+  let amountFetched = 0;
+
+  //while amountFetched is less than 5 and we still have locations in our array to iterate
   while (amountFetched < 5 && i < result.length) {
     const location = result[i];
+
     const { city, regionCode } = location;
+
     const countryCode = location.countryCode.toLowerCase();
-    console.log(countryCode);
+
     if (countryCodes.includes(countryCode)) {
       results.push(`${city}, ${regionCode}`);
       amountFetched += 1;
     }
+
     i++;
   }
-  console.log(results);
+
   return results;
 };
 
