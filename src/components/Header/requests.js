@@ -6,10 +6,15 @@ import countryCodes from "../../countryCodes.js";
 const fetchLocationOptions = async (locationValue) => {
   try {
     const response = await axios.get(
-      `http://geodb-free-service.wirefreethought.com/v1/geo/cities?namePrefix=${locationValue}`
+      `https://api.radar.io/v1/search/autocomplete?query=${locationValue}`,
+      {
+        headers: {
+          Authorization: "prj_live_pk_c606085564ac468adcdf2b79fd450b5a5ecc82d4",
+        },
+      }
     );
 
-    return createLocationOptions(response.data.data);
+    return createLocationOptions(response.data.addresses);
   } catch {
     return [];
   }
@@ -30,12 +35,12 @@ const createLocationOptions = (allLocations) => {
   while (amountFetched < 5 && i < allLocations.length) {
     const location = allLocations[i];
 
-    const { city, regionCode } = location;
+    const { city, state, country } = location;
 
     const countryCode = location.countryCode.toLowerCase();
 
     if (countryCodes.includes(countryCode)) {
-      result.push(`${city}, ${regionCode}`);
+      result.push(`${city}, ${state}, ${country}`);
       amountFetched += 1;
     }
 
