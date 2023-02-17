@@ -22,6 +22,7 @@ const fetchUserLocation = () => {
       );
 
       const { city, region: regionName } = ipapiResponse.data;
+
       const countryCode = ipapiResponse.data.country_code.toLowerCase();
 
       //if user's countryCode isn't among the ones we can access data from,
@@ -32,17 +33,21 @@ const fetchUserLocation = () => {
           type: types.FETCH_USER_LOCATION,
           payload: `Los Angeles, California`,
         });
+
         dispatch(updateSearchParam("where", `Los Angeles, California`));
+
         return;
       }
 
       //if country code is among the ones we have access to, update our country
       //code param, update user's location, and the search param of where they are
       dispatch(updateCountryCode(countryCode));
+
       dispatch({
         type: types.FETCH_USER_LOCATION,
         payload: `${city}, ${regionName}`,
       });
+
       dispatch(updateSearchParam("where", `${city}, ${regionName}`));
     } catch {
       //if error in retrieving user's location, use los angeles for user's location and update that in the search param so we can make request.
@@ -51,6 +56,7 @@ const fetchUserLocation = () => {
         type: types.FETCH_USER_LOCATION,
         payload: "Los Angeles, California",
       });
+
       dispatch(updateSearchParam("where", `Los Angeles, California`));
     }
   };

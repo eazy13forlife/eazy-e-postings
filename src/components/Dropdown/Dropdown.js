@@ -4,6 +4,7 @@ import "./Dropdown.scss";
 
 const Dropdown = ({ title, items, onItemClick }) => {
   let renderedItems;
+
   if (items && items.length) {
     renderedItems = items.map((item, index) => {
       return (
@@ -18,9 +19,9 @@ const Dropdown = ({ title, items, onItemClick }) => {
         </li>
       );
     });
-  } else if (items && !items.length) {
-    renderedItems = [<p key={1}>No Results Found</p>];
   }
+
+  renderedItems = [<p key={1}>No Results Found</p>];
 
   return (
     <div className="Dropdown">

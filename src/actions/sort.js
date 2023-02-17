@@ -3,6 +3,7 @@ import types from "./types.js";
 const sortJobData = () => {
   return async (dispatch, getState) => {
     const jobFilter = getState().jobFilter;
+
     switch (jobFilter) {
       case "sort_date":
         return dispatch(sortByDate());
@@ -14,10 +15,13 @@ const sortJobData = () => {
   };
 };
 
+//sort from newest postings to latest postings
 const sortByDate = () => {
   return async (dispatch, getState) => {
     const jobData = getState().jobData;
+
     const newJobData = [...jobData];
+
     newJobData.sort((a, b) => {
       if (a.created > b.created) {
         return -1;
@@ -27,6 +31,7 @@ const sortByDate = () => {
         return 0;
       }
     });
+
     dispatch({
       type: types.SORT_BY_DATE,
       payload: newJobData,
@@ -34,10 +39,13 @@ const sortByDate = () => {
   };
 };
 
+//sort from highest salary to lowest salary
 const sortByMaxSalary = () => {
   return async (dispatch, getState) => {
     const jobData = getState().jobData;
+
     const newJobData = [...jobData];
+
     newJobData.sort((a, b) => {
       if (a.maxSalary > b.maxSalary) {
         return -1;
@@ -57,6 +65,7 @@ const sortByMaxSalary = () => {
 const getUnsortedData = () => {
   return async (dispatch, getState) => {
     const jobData = getState().jobData;
+
     dispatch({
       type: types.GET_UNSORTED_DATA,
       payload: jobData,

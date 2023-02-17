@@ -1,5 +1,8 @@
 import types from "../actions/types.js";
 
+//Strictly for performance reasons. When i deploy, takes too long to get initial r
+//results because server has been sleeping.
+
 const initialData = [
   {
     companyName: "Telelanguage",

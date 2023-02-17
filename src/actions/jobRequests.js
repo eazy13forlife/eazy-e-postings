@@ -15,10 +15,15 @@ const loadJobs = (boolean) => {
 const fetchJobData = () => {
   return async (dispatch, getState) => {
     try {
+      //let us know if currently loading jobs, so we can display an indicator
       dispatch(loadJobs(true));
+
       const searchParams = getState().searchParams;
+
       const urlString = createUrlString(searchParams);
+
       const response = await axios.get(urlString);
+
       const results = createJobResults(response.data.results);
 
       dispatch({
@@ -26,7 +31,7 @@ const fetchJobData = () => {
         payload: results,
       });
 
-      //checks to see if it should sort the data according to any sort by filters
+      //checks to see if job data should be sorted by any filters
       dispatch(sortJobData());
 
       dispatch(loadJobs(false));
@@ -41,32 +46,44 @@ const fetchJobData = () => {
   };
 };
 
+//creates urlString needed to make a request to Adzuna search api. Takes into
+// account all search paramaters we have selected
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
   let urlString = `https://eazy13-github-proxy.herokuapp.com/https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=92a35e33&app_key=8d6de2313330dc88848ec37ea6285db9&results_per_page=15`;
 
-  //create our urlString with the different params that actually have values
+  //for each  query param, add the key and value to our urlString like key=value
   for (let i = 0; i < allParams.length; i++) {
     const param = allParams[i];
+
+    //skip country because it is not part of the query string.(It is used in the root path)
+    if (param === "country") {
+      continue;
+    }
+
     let paramValue = searchParamsObject[param];
-    //searchParam value for salary can't have commas or decimals in it, so we
+
+    //the searchParam value for salary can't have commas or decimals in it, so we
     //need to format it first before setting in our url
     if (param === "salary_min" || param === "salary_max") {
       paramValue = returnWholeNumber(paramValue);
     }
-    if (param === "country") {
-      //skip country because it is part of path, not part of query string
-      continue;
-    } else if (paramValue) {
+
+    //only add the search param if it has a value
+    if (paramValue) {
       urlString += `&${param}=${paramValue}`;
     }
   }
+
   return urlString;
 };
 
+//creates array of all our job results
 const createJobResults = (responseData) => {
   const resultsArray = [];
+
+  //for each job object, grab the necessary details and add to our resultsArray
   for (let i = 0; i < responseData.length; i++) {
     const jobInfo = responseData[i];
 
@@ -84,6 +101,7 @@ const createJobResults = (responseData) => {
     } = jobInfo;
 
     const created = moment(jobInfo.created).valueOf();
+
     const state = jobInfo.location.area[0];
 
     const jobObject = {
@@ -100,8 +118,10 @@ const createJobResults = (responseData) => {
       redirectUrl,
       categoryTag,
     };
+
     resultsArray.push(jobObject);
   }
+
   return resultsArray;
 };
 
