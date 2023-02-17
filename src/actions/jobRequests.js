@@ -51,7 +51,7 @@ const fetchJobData = () => {
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
-  let urlString = `https://eazy13-github-proxy.herokuapp.com/https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=92a35e33&app_key=8d6de2313330dc88848ec37ea6285db9&results_per_page=15`;
+  let urlString = `https://eazy13-github-proxy.herokuapp.com/https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=${process.env.REACT_APP_ADZUNA_ID}&app_key=${process.env.REACT_APP_ADZUNA_KEY}&results_per_page=15`;
 
   //for each  query param, add the key and value to our urlString like key=value.
   for (let i = 0; i < allParams.length; i++) {
