@@ -35,7 +35,7 @@ const createLocationOptions = (allLocations) => {
   while (amountFetched < 5 && i < allLocations.length) {
     const location = allLocations[i];
 
-    const { city, state, country } = location;
+    const { city = "", state = "", country = "" } = location;
 
     const countryCode = location.countryCode.toLowerCase();
 
