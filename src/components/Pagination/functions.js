@@ -14,7 +14,7 @@ const updateHistoryForward = (totalPageButtons, currentPageButton, update) => {
   const nextPageButton = currentPageButton + 1;
 
   const newPageButton = Math.min(nextPageButton, totalPageButtons);
-
+  console.log("ds");
   update(`/${newPageButton}`);
 };
 

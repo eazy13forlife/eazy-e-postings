@@ -1,8 +1,7 @@
 import types from "../actions/types.js";
 
-//Strictly for demo/visual reasons. When I deploy, takes too long to fetch initial
-//results because server has been sleeping. Otherwise, I would set to empty array
-
+//This initial jobData is strictly for demo/visual reasons while we wait for
+//actual job data response. I want to show the UI right away.
 const initialData = [
   {
     companyName: "Product Review Jobs",

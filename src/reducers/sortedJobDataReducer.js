@@ -1,5 +1,7 @@
 import types from "../actions/types.js";
 
+//This initial jobData is strictly for demo/visual reasons while we wait for
+//actual job data response. I want to show the UI right away
 const initialJobData = [
   {
     companyName: "Product Review Jobs",
