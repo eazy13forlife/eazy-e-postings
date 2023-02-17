@@ -7,9 +7,11 @@ import Filters from "./Filters/Filters.js";
 import Results from "./Results/Results.js";
 
 import "./index.scss";
+
 const Homepage = (ownProps) => {
-  //the current page button we are on of our pagination, taken from the url. If nothing is in url, we will assume that we are on the first page.
+  //the current page button we are on, so we can pass to Results component
   let currentPageButton;
+
   if (!ownProps.match.params.page) {
     currentPageButton = 1;
   } else {
@@ -17,10 +19,6 @@ const Homepage = (ownProps) => {
   }
 
   const dispatch = useDispatch();
-
-  const sortedJobData = useSelector((state) => {
-    return state.sortedJobData;
-  });
 
   const userLocation = useSelector((state) => {
     return state.userLocation;

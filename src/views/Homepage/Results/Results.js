@@ -36,6 +36,7 @@ const Results = ({ currentPageButton }) => {
             take a while...
           </p>
         ) : null}
+
         <Pagination
           data={jobData}
           pageButtonsLimit={5}

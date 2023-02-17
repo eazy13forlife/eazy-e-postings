@@ -15,6 +15,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 
 const Filters = () => {
   const dispatch = useDispatch();
+
   const [showFiltersButton, setShowFiltersButton] = useState(
     window.innerWidth <= 760
   );
@@ -22,8 +23,14 @@ const Filters = () => {
     window.innerWidth <= 760
   );
 
+  const searchParams = useSelector((state) => {
+    return state.searchParams;
+  });
+
+  //Whenever window resizes, check to see if we should make this component
+  //mobile or desktop version
   useEffect(() => {
-    const onWindowResize = (e) => {
+    const makeFiltersResponsive = (e) => {
       if (e.srcElement.innerWidth <= 760) {
         setShowFiltersButton(true);
         setShowHideFiltersButton(true);
@@ -32,23 +39,22 @@ const Filters = () => {
         setShowHideFiltersButton(false);
       }
     };
-    window.addEventListener("resize", onWindowResize);
+
+    window.addEventListener("resize", makeFiltersResponsive);
 
     return () => {
-      window.removeEventListener("resize", onWindowResize);
+      window.removeEventListener("resize", makeFiltersResponsive);
     };
   }, []);
 
-  const searchParams = useSelector((state) => {
-    return state.searchParams;
-  });
-
-  const onFilterSelect = (e) => {
+  const onSortByChange = (e) => {
     const value = e.target.value;
 
     if (value === "none") {
       dispatch(turnOffFilter());
+
       dispatch(getUnsortedData());
+
       return;
     }
 
@@ -62,6 +68,28 @@ const Filters = () => {
       default:
         return;
     }
+  };
+
+  const onContractTimeChange = (e) => {
+    const contractType = e.target.value;
+
+    switch (contractType) {
+      case "part time":
+        dispatch(updateSearchParam("full_time", ""));
+        dispatch(updateSearchParam("part_time", 1));
+        break;
+      case "full time":
+        dispatch(updateSearchParam("part_time", ""));
+        dispatch(updateSearchParam("full_time", 1));
+        break;
+      case "both":
+        dispatch(updateSearchParam("part_time", ""));
+        dispatch(updateSearchParam("full_time", ""));
+        break;
+      default:
+        return;
+    }
+    dispatch(fetchJobData());
   };
 
   return (
@@ -85,7 +113,7 @@ const Filters = () => {
         <h2 className="Filters__heading text-large-2">Job Filters</h2>
         <div className="Filters__group">
           <p className="Filters__group-title">Sort By:</p>
-          <div className="Filters__radios-container" onChange={onFilterSelect}>
+          <div className="Filters__radios-container" onChange={onSortByChange}>
             <div className="Filters__radio-group">
               <input
                 type="radio"
@@ -119,6 +147,7 @@ const Filters = () => {
             </div>
           </div>
         </div>
+
         <div className="Filters__group">
           <p className="Filters__group-title">Salary:</p>
           <div className="Filters__salary-inputs">
@@ -131,6 +160,11 @@ const Filters = () => {
                 id="minimum-salary"
                 placeholder="Min Salary"
                 value={searchParams.salary_min}
+                onKeyDown={(e) => {
+                  if (e.code === "Enter") {
+                    dispatch(fetchJobData());
+                  }
+                }}
                 onChange={(e) => {
                   dispatch(updateSearchParam("salary_min", e.target.value));
                 }}
@@ -145,6 +179,11 @@ const Filters = () => {
                 id="maximum-salary"
                 placeholder="Max Salary"
                 value={searchParams.salary_max}
+                onKeyDown={(e) => {
+                  if (e.code === "Enter") {
+                    dispatch(fetchJobData());
+                  }
+                }}
                 onChange={(e) => {
                   dispatch(updateSearchParam("salary_max", e.target.value));
                 }}
@@ -160,23 +199,12 @@ const Filters = () => {
             </button>
           </div>
         </div>
+
         <div className="Filters__group">
           <p className="Filters__group-title">Contract Time:</p>
           <div
             className="Filters__radios-container"
-            onChange={(e) => {
-              if (e.target.value === "part time") {
-                dispatch(updateSearchParam("full_time", ""));
-                dispatch(updateSearchParam("part_time", 1));
-              } else if (e.target.value === "full time") {
-                dispatch(updateSearchParam("part_time", ""));
-                dispatch(updateSearchParam("full_time", 1));
-              } else if (e.target.value === "both") {
-                dispatch(updateSearchParam("part_time", ""));
-                dispatch(updateSearchParam("full_time", ""));
-              }
-              dispatch(fetchJobData());
-            }}
+            onChange={onContractTimeChange}
           >
             <div className="Filters__radio-group">
               <input
@@ -211,6 +239,7 @@ const Filters = () => {
             </div>
           </div>
         </div>
+
         {showHideFiltersButton ? (
           <button
             className="button-3 button-3--primary text-large Filters__hide-button"

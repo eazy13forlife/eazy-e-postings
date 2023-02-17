@@ -43,7 +43,7 @@ const Header = () => {
     return state.searchParams;
   });
 
-  //adds event listener on our body for closing all dropdown components when user
+  //adds event listener on our body for closing all Dropdown components when user
   //clicks outside of them
   useEffect(() => {
     const closeDropdownsOutsideClick = (e) => {
@@ -111,7 +111,12 @@ const Header = () => {
   return (
     <header className="Header">
       <div className="container Header__container">
-        <h1 className="logo">
+        <h1
+          className="logo"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
           <span className="bold">Eazy-E</span> Postings
         </h1>
 

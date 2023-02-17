@@ -13,8 +13,6 @@ import {
 
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
-import "./Pagination.scss";
-
 const Pagination = ({
   data,
   pageButtonsLimit,

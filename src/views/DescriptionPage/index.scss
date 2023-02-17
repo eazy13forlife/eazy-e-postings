@@ -64,6 +64,11 @@
     }
   }
   &__button {
+    text-align: center;
+    max-width: 35rem;
+    display: block;
+    line-height: 1.3;
+    text-decoration: none;
     @include abstracts.respondMax(abstracts.$tablet-large) {
       margin-top: 3rem;
     }

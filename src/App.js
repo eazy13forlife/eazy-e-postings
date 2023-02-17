@@ -15,6 +15,7 @@ const App = () => {
         component={(props) => <Homepage {...props} />}
       />
       <Route
+        exact
         path="/jobs/:title+/:id"
         component={(props) => <DescriptionPage {...props} />}
       />

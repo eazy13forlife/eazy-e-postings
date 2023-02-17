@@ -7,21 +7,22 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
   const selectBoxRef = useRef();
 
   const [openSelectOptions, setOpenSelectOptions] = useState(false);
+
   const [screenTitle, setScreenTitle] = useState(value);
 
-  //adds event listener on our body that closes our select box options when a user
+  //adds event listener on our body that closes our SelectBox options when a user
   //clicks outside of it
   useEffect(() => {
-    const renderSelectOptions = (e) => {
+    const closeSelectOptions = (e) => {
       if (selectBoxRef.current && !selectBoxRef.current.contains(e.target)) {
         setOpenSelectOptions(false);
       }
     };
 
-    document.body.addEventListener("click", renderSelectOptions);
+    document.body.addEventListener("click", closeSelectOptions);
 
     return () => {
-      document.body.removeEventListener("click", renderSelectOptions);
+      document.body.removeEventListener("click", closeSelectOptions);
     };
   }, []);
 
@@ -52,6 +53,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
         <p>{screenTitle}</p>
         <GiPlainArrow className="SelectBox__icon" />
       </div>
+
       <ul
         className={`SelectBox__list ${
           openSelectOptions ? "" : "SelectBox__list--closed"
