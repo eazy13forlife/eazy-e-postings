@@ -19,7 +19,6 @@ const Homepage = () => {
   });
 
   useEffect(() => {
-    console.log("dog");
     const getInitialValues = async () => {
       await dispatch(fetchUserLocation());
       dispatch(fetchJobData());
@@ -42,7 +41,7 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <main className="Homepage">
+      <main className="HomeBody">
         <div className="container">
           <Filters />
           <Results currentPageButton={currentPageButton} />

@@ -6,15 +6,7 @@ import countryCodes from "../../countryCodes.js";
 const fetchLocationOptions = async (locationValue) => {
   try {
     const response = await axios.get(
-      "https://wft-geo-db.p.rapidapi.com/v1/geo/cities",
-      {
-        headers: {
-          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-          "x-rapidapi-key":
-            "f5ccaa0bb8msh63eb609ff46e586p12f55djsn8088bb1da5d6",
-        },
-        params: { namePrefix: locationValue },
-      }
+      `http://geodb-free-service.wirefreethought.com/v1/geo/cities?namePrefix=${locationValue}`
     );
 
     return createLocationOptions(response.data.data);
@@ -24,33 +16,33 @@ const fetchLocationOptions = async (locationValue) => {
 };
 
 //creates our array of location options that we want user to choose from
-const createLocationOptions = (result) => {
-  // we only want 5 items from our results, even if results shows 100
-  let results = [];
+const createLocationOptions = (allLocations) => {
+  // we only want 5 items at a time in our result array
+  let result = [];
 
-  //i will iterate our result array
+  //i will iterate our allLocations array
   let i = 0;
 
   //keeps track of the actual items we have collected
   let amountFetched = 0;
 
   //while amountFetched is less than 5 and we still have locations in our array to iterate
-  while (amountFetched < 5 && i < result.length) {
-    const location = result[i];
+  while (amountFetched < 5 && i < allLocations.length) {
+    const location = allLocations[i];
 
     const { city, regionCode } = location;
 
     const countryCode = location.countryCode.toLowerCase();
 
     if (countryCodes.includes(countryCode)) {
-      results.push(`${city}, ${regionCode}`);
+      result.push(`${city}, ${regionCode}`);
       amountFetched += 1;
     }
 
     i++;
   }
 
-  return results;
+  return result;
 };
 
 export { fetchLocationOptions };

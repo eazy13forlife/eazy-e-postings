@@ -45,7 +45,7 @@ const Header = () => {
     return state.searchParams;
   });
 
-  //adds event listener on our body for closing all Dropdown components when user
+  //adds event listener on our body that closes all Dropdown components when user
   //clicks outside of them
   useEffect(() => {
     const closeDropdownsOutsideClick = (e) => {
@@ -60,7 +60,6 @@ const Header = () => {
       }
     };
 
-    //if we are not clicking on any of the dropdowns, close them all if open
     document.body.addEventListener("click", closeDropdownsOutsideClick);
 
     return () => {
@@ -69,11 +68,11 @@ const Header = () => {
   }, []);
 
   //sets debouncedLocationValue after a certain time passes without user typing a
-  //character in order to avoid many requests.
+  //character in order to avoid too many requests.
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedLocationValue(locationValue);
-    }, 500);
+    }, 1000);
 
     return () => {
       clearInterval(timerId);
