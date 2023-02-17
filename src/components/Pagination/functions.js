@@ -6,38 +6,34 @@ const goToNextPageButton = (
   updateButtonFunction
 ) => {
   const nextPageButton = currentPageButton + 1;
-  if (nextPageButton >= totalPageButtons) {
-    updateButtonFunction(totalPageButtons);
-  } else {
-    updateButtonFunction(nextPageButton);
-  }
+
+  const newPageButton = Math.min(nextPageButton, totalPageButtons);
+
+  updateButtonFunction(newPageButton);
 };
 
 const updateHistoryForward = (totalPageButtons, currentPageButton) => {
   const nextPageButton = currentPageButton + 1;
-  if (nextPageButton >= totalPageButtons) {
-    history.push(`/${totalPageButtons}`);
-  } else {
-    history.push(`/${nextPageButton}`);
-  }
+
+  const newPageButton = Math.min(nextPageButton, totalPageButtons);
+
+  history.push(`/${newPageButton}`);
 };
 
 const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
   const previousPageButton = currentPageButton - 1;
-  if (previousPageButton < 1) {
-    updateButtonFunction(1);
-  } else {
-    updateButtonFunction(previousPageButton);
-  }
+
+  const newPageButton = Math.max(1, previousPageButton);
+
+  updateButtonFunction(newPageButton);
 };
 
 const updateHistoryBackward = (currentPageButton) => {
   const previousPageButton = currentPageButton - 1;
-  if (previousPageButton <= 1) {
-    history.push("/");
-  } else {
-    history.push(`/${previousPageButton}`);
-  }
+
+  const newPageButton = Math.max(1, previousPageButton);
+
+  history.push(`/${newPageButton}`);
 };
 
 const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
@@ -49,27 +45,36 @@ const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
 const updateHistorySpecific = (totalPageButtons, pageNumber) => {
   if (pageNumber <= 1) {
     history.push(`/`);
-  } else if (pageNumber <= totalPageButtons) {
+  }
+
+  if (pageNumber <= totalPageButtons) {
     history.push(`/${pageNumber}`);
   }
 };
 
-//will return the posts we should show based on our dataLimit and the current page we are on. *i can call this function and map inside jsx*
+//will return the posts we should show based on our dataLimit and the current
+// page we are on.
 const getPaginatedData = (data, currentPageButton, dataLimit) => {
   const firstItemIndex = currentPageButton * dataLimit - (dataLimit - 1) - 1;
+
   let lastItemIndex = currentPageButton * dataLimit - 1;
+
   if (lastItemIndex >= data.length) {
     lastItemIndex = data.length - 1;
   }
+
   const results = [];
+
   for (let i = firstItemIndex; i <= lastItemIndex; i++) {
-    const singleData = data[i];
-    results.push(singleData);
+    const jobPost = data[i];
+
+    results.push(jobPost);
   }
+
   return results;
 };
 
-// I will show a max of 5 page buttons at a time, and only after page button 3 is when the pages range change.*i can call this function and map inside jsx*
+// I will show a max of 5 page buttons at a time, and only after page button 3 is when the pages range change.
 const getPaginatedPagesRange = (
   totalPageButtons,
   pageButtonsLimit,
@@ -77,32 +82,38 @@ const getPaginatedPagesRange = (
 ) => {
   //get initial base range to work from
   const initialStartRange = 1;
+
   let initialEndRange;
+
   if (totalPageButtons <= pageButtonsLimit) {
     initialEndRange = totalPageButtons;
   } else {
     initialEndRange = pageButtonsLimit;
   }
+
   //if we havent selected past the 3rd page button or if initialEndRange ends at  three pageButtonsLimit, just return our initial ranges
   if (initialEndRange <= 3 || pageButton <= 3) {
     return turnRangeToArray([initialStartRange, initialEndRange]);
   }
 
-  //if initialEndRange is greater than 3 and we select a page button greater than 3
-  //then we can update our range. Let's say we have a range from 1-4
+  //if initialEndRange is greater than 3 and we select a page button greater than
+  // 3 then we can update our range. Let's say we have a range from 1-4
   if (initialEndRange > 3 && pageButton > 3) {
     // find the new pageButton difference from 3
     const diff = pageButton - 3;
+
     // move the startRange up this amount
     let newStartRange = initialStartRange + diff;
+
     // move the endRange up this amount
     let newEndRange = initialEndRange + diff;
+
     // if newEndRange exceeds or equals the total number of page buttons,then the newEndRange should just equal the total number of page buttons.
     if (newEndRange >= totalPageButtons) {
       newEndRange = totalPageButtons;
     }
 
-    //we want to update our startRange to make sure we are showing pageButtonsLimit at once, if possibile or totalpageButtons otherwise.
+    //we want to update our startRange to make sure we are showing pageButtonsLimit at once, if possible or totalPageButtons otherwise.
     newStartRange = checkStartRange(
       newStartRange,
       newEndRange,
@@ -140,13 +151,18 @@ const checkStartRange = (
   return startRange;
 };
 
+//an array we will map over to create our number buttons
 const turnRangeToArray = (range) => {
   let result = [];
+
   let start = range[0];
+
   let end = range[1];
+
   for (let i = start; i <= end; i++) {
     result.push(i);
   }
+
   return result;
 };
 

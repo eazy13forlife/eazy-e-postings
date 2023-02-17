@@ -22,19 +22,19 @@ const Pagination = ({
   cardComponent,
   currentPageButton,
 }) => {
-  //totalPageButtons tells us the total number of totalPageButtons we will need to store our data. We do Math.ceil because any decimal in regards to pages means round up
-
   const DataCard = cardComponent;
 
+  //the total number of totalPageButtons we will need to store our data. We do Math.ceil because any decimal in regards to pages means round up
   const [totalPageButtons] = useState(Math.ceil(data.length / dataLimit));
 
   const [pageButton, setPageButton] = useState(currentPageButton);
 
-  //when our currentPageButton prop changes,update our pageButton state for when our component re-renders, so the right results can be fetched
+  //when our currentPageButton prop changes,update our pageButton state
   useEffect(() => {
     setPageButton(currentPageButton);
   }, [currentPageButton]);
 
+  //all the rendered job depending on page we're on and data limit
   const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
     (job, index) => {
       return (
@@ -51,6 +51,7 @@ const Pagination = ({
     pageButton
   ).map((pageNumber, index) => {
     const isSelected = pageButton === pageNumber;
+
     return (
       <button
         key={index}

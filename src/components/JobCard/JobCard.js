@@ -34,6 +34,7 @@ const JobCard = ({ data }) => {
   };
 
   const momentCreated = moment(created).format("MMM Do, YY");
+
   return (
     <div
       className="JobCard"
