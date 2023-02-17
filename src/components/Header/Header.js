@@ -72,7 +72,7 @@ const Header = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedLocationValue(locationValue);
-    }, 1000);
+    }, 600);
 
     return () => {
       clearInterval(timerId);
