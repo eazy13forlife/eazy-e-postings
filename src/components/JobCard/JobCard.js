@@ -23,7 +23,7 @@ const JobCard = ({ data }) => {
     id,
   } = data;
 
-  const titleUrl = title.replace(/\s/g, "-");
+  const titleUrl = title.replace(/[\s/]/g, "-");
 
   const renderContract = () => {
     if (contractTime === "full_time") {
