@@ -12,13 +12,14 @@ import "./index.scss";
 const Homepage = () => {
   const dispatch = useDispatch();
 
-  const currentPage = useParams().page;
+  const currentPage = +useParams().page;
 
   const userLocation = useSelector((state) => {
     return state.userLocation;
   });
 
   useEffect(() => {
+    console.log("dog");
     const getInitialValues = async () => {
       await dispatch(fetchUserLocation());
       dispatch(fetchJobData());

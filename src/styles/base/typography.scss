@@ -44,14 +44,7 @@
   font-size: 1.4rem;
   line-height: 2.1rem;
 }
-/*
-.text-small-1 {
-  font-family: var(--font-family-1);
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.406rem;
-}
-*/
+
 .text-small {
   font-size: 1.4rem;
   line-height: 1.64rem;
@@ -61,4 +54,9 @@
   font-weight: 700;
   font-size: 1.2rem;
   line-height: 1.406rem;
+}
+
+.error-message-text {
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
