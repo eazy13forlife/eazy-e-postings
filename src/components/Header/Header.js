@@ -45,10 +45,6 @@ const Header = () => {
     return state.searchParams;
   });
 
-  // const info = encodeURIComponent(searchParams);
-
-  // const dec = decodeURIComponent(info);
-
   //adds event listener on our body that closes all Dropdown components when user
   //clicks outside of them
   useEffect(() => {
@@ -95,6 +91,16 @@ const Header = () => {
     }
   }, [debouncedLocationValue]);
 
+  //when we click search get an encoded url and go to the url below which will open
+  //up JobsPage component
+  const onSearchSubmit = (e) => {
+    e.preventDefault();
+
+    const encodedURL = encodeURIComponent(JSON.stringify(searchParams));
+
+    navigate(`/jobs?info=${encodedURL}&page=1`);
+  };
+
   //renders dropdown component for our job search parameters
   const renderDropdown = (paramName, dropTitle, dropItems) => {
     if (paramName === showDropdownFor) {
@@ -124,14 +130,7 @@ const Header = () => {
           <span className="bold">Eazy-E</span> Postings
         </h1>
 
-        <form
-          className="form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            dispatch(fetchJobData());
-            navigate("/");
-          }}
-        >
+        <form className="form" onSubmit={onSearchSubmit}>
           <div
             className="form__input-group"
             onClick={() => {

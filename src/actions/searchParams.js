@@ -11,6 +11,13 @@ const updateSearchParam = (param, value) => {
   };
 };
 
+const updateAllSearchParams = (paramsObj) => {
+  return {
+    type: types.UPDATE_ALL_SEARCH_PARAMS,
+    payload: paramsObj,
+  };
+};
+
 //country code is part of the base url. It needs to be set individually.
 const updateCountryCode = (code) => {
   code = code.toLowerCase();
@@ -33,4 +40,4 @@ const updateCountryCode = (code) => {
   };
 };
 
-export { updateSearchParam, updateCountryCode };
+export { updateSearchParam, updateCountryCode, updateAllSearchParams };

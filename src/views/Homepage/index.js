@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { fetchJobData, fetchUserLocation } from "../../actions";
 import Header from "../../components/Header/Header.js";
-import Filters from "./Filters/Filters.js";
+import Filters from "../../components/Filters/Filters.js";
 import Results from "./Results/Results.js";
 
 import "./index.scss";
