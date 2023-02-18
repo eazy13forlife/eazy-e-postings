@@ -88,7 +88,13 @@ const Pagination = ({
 
   return (
     <React.Fragment>
-      <div className="Pagination__data">{renderedData}</div>
+      <div className="Pagination__data">
+        {renderedData.length ? (
+          renderedData.length
+        ) : (
+          <p className="Results__none text-large">No results found.</p>
+        )}
+      </div>
 
       <div className="Pagination__page-group">
         <BiLeftArrow
