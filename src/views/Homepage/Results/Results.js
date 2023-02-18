@@ -39,7 +39,7 @@ const Results = ({ currentPageButton }) => {
 
         <Pagination
           data={jobData}
-          pageButtonsLimit={5}
+          buttonsRange={5}
           dataLimit={7}
           cardComponent={JobCard}
           currentPageButton={currentPageButton}

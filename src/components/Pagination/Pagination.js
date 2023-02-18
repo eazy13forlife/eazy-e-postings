@@ -16,7 +16,9 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 const Pagination = ({
   data,
-  pageButtonsLimit,
+  //range of buttons we will show on screen. For example if range is 5, 5 sequential page buttons need to be displayed
+  buttonsRange,
+  //max amount of data we will show on one page
   dataLimit,
   cardComponent,
   currentPageButton,
@@ -25,12 +27,27 @@ const Pagination = ({
 
   const DataCard = cardComponent;
 
-  //the total number of totalPageButtons we will need to store our data
-  const [totalPageButtons] = useState(Math.ceil(data.length / dataLimit));
+  const getTotalPageButtons = () => {
+    return Math.ceil(data.length / dataLimit);
+  };
 
+  //the total number of page buttons we will need to store our data depending on the dataLimit
+  const [totalPageButtons, setTotalPageButtons] = useState(
+    getTotalPageButtons()
+  );
+
+  //page button we are currently on
   const [pageButton, setPageButton] = useState(currentPageButton);
 
-  //when our currentPageButton prop changes,update our pageButton state
+  //when our data changes, check to see if we need to update the total number of page buttons.
+  //For example, data size might be larger/smaller now
+  useEffect(() => {
+    setTotalPageButtons(getTotalPageButtons());
+  }, [data]);
+
+  //when we go forward and backward on history object, we get a new page paramater value
+  // so we have to update our pageButton state to reflect the current page we're on,
+  // otherwise it keeps the initial page value used when component first mounted
   useEffect(() => {
     setPageButton(currentPageButton);
   }, [currentPageButton]);
@@ -46,10 +63,9 @@ const Pagination = ({
     }
   );
 
-  //get all the rendered page buttons
-  const renderedPagesRange = getPaginatedPagesRange(
+  const renderedPageButtons = getPaginatedPagesRange(
     totalPageButtons,
-    pageButtonsLimit,
+    buttonsRange,
     pageButton
   ).map((pageNumber, index) => {
     const isSelected = pageButton === pageNumber;
@@ -82,7 +98,7 @@ const Pagination = ({
             updateHistoryBackward(pageButton, navigate);
           }}
         />
-        {renderedPagesRange}
+        {renderedPageButtons}
         <BiRightArrow
           className="Pagination__icon Pagination__button "
           onClick={() => {
