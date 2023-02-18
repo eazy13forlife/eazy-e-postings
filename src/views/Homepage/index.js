@@ -12,12 +12,17 @@ import "./index.scss";
 const Homepage = () => {
   const dispatch = useDispatch();
 
-  const currentPage = +useParams().page;
+  let currentPage = +useParams().page;
+
+  if (!currentPage) {
+    currentPage = 1;
+  }
 
   const userLocation = useSelector((state) => {
     return state.userLocation;
   });
 
+  //on initial render, if no user location, set one and then fetch job data to display
   useEffect(() => {
     const getInitialValues = async () => {
       await dispatch(fetchUserLocation());
@@ -29,22 +34,13 @@ const Homepage = () => {
     }
   }, []);
 
-  //the current page button we are on, so we can pass to Results component
-  let currentPageButton;
-
-  if (!currentPage) {
-    currentPageButton = 1;
-  } else {
-    currentPageButton = +currentPage;
-  }
-
   return (
     <>
       <Header />
       <main className="HomeBody">
         <div className="container">
           <Filters />
-          <Results currentPageButton={currentPageButton} />
+          <Results currentPageButton={currentPage} />
         </div>
       </main>
     </>

@@ -45,6 +45,10 @@ const Header = () => {
     return state.searchParams;
   });
 
+  // const info = encodeURIComponent(searchParams);
+
+  // const dec = decodeURIComponent(info);
+
   //adds event listener on our body that closes all Dropdown components when user
   //clicks outside of them
   useEffect(() => {

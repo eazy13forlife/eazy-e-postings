@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -52,16 +53,20 @@ const Pagination = ({
     setPageButton(currentPageButton);
   }, [currentPageButton]);
 
-  //all the rendered jobs depending on the page we're on and the data limit
-  const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
-    (job, index) => {
-      return (
-        <React.Fragment key={index}>
-          <DataCard data={job} />
-        </React.Fragment>
-      );
-    }
-  );
+  const renderContent = () => {
+    //all the rendered jobs depending on the page we're on and the data limit
+    const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
+      (job, index) => {
+        return (
+          <React.Fragment key={index}>
+            <DataCard data={job} />
+          </React.Fragment>
+        );
+      }
+    );
+
+    return renderedData;
+  };
 
   const renderedPageButtons = getPaginatedPagesRange(
     totalPageButtons,
@@ -88,13 +93,7 @@ const Pagination = ({
 
   return (
     <React.Fragment>
-      <div className="Pagination__data">
-        {renderedData.length ? (
-          renderedData.length
-        ) : (
-          <p className="Results__none text-large">No results found.</p>
-        )}
-      </div>
+      <div className="Pagination__data">{renderContent()}</div>
 
       <div className="Pagination__page-group">
         <BiLeftArrow

@@ -51,13 +51,14 @@ const fetchJobData = () => {
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
-  let urlString = `https://eazy13-github-proxy.herokuapp.com/https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/50?app_id=92a35e33&app_key=8d6de2313330dc88848ec37ea6285db9&results_per_page=50`;
+  let urlString = `https://eazy13-github-proxy.herokuapp.com/https://api.adzuna.com/v1/api/jobs/${searchParamsObject.country}/search/1?app_id=92a35e33&app_key=8d6de2313330dc88848ec37ea6285db9&results_per_page=50`;
 
   //for each  query param, add the key and value to our urlString like key=value
   for (let i = 0; i < allParams.length; i++) {
     const param = allParams[i];
 
-    //skip country because it is not part of the query string.(It is used in the root path)
+    //skip country because it is not part of the query string.(It is used in the root path,as
+    //shown above)
     if (param === "country") {
       continue;
     }
