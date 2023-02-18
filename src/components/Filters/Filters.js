@@ -10,7 +10,7 @@ import {
   turnOnFilter,
   turnOffFilter,
   getUnsortedJobData,
-} from "../../../actions/";
+} from "../../actions";
 import { BsCurrencyDollar } from "react-icons/bs";
 
 const Filters = () => {

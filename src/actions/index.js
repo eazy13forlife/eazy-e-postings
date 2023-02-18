@@ -1,4 +1,8 @@
-import { updateSearchParam, updateCountryCode } from "./searchParams.js";
+import {
+  updateSearchParam,
+  updateCountryCode,
+  updateAllSearchParams,
+} from "./searchParams.js";
 import { fetchJobData, loadJobs } from "./jobRequests.js";
 import { fetchUserLocation } from "./userLocation.js";
 import { sortByDate, sortByMaxSalary, getUnsortedJobData } from "./sort.js";
@@ -18,4 +22,5 @@ export {
   turnOffFilter,
   selectJob,
   clearJobSelected,
+  updateAllSearchParams,
 };

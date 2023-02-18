@@ -53,20 +53,16 @@ const Pagination = ({
     setPageButton(currentPageButton);
   }, [currentPageButton]);
 
-  const renderContent = () => {
-    //all the rendered jobs depending on the page we're on and the data limit
-    const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
-      (job, index) => {
-        return (
-          <React.Fragment key={index}>
-            <DataCard data={job} />
-          </React.Fragment>
-        );
-      }
-    );
-
-    return renderedData;
-  };
+  //all the rendered jobs depending on the page we're on and the data limit
+  const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
+    (job, index) => {
+      return (
+        <React.Fragment key={index}>
+          <DataCard data={job} />
+        </React.Fragment>
+      );
+    }
+  );
 
   const renderedPageButtons = getPaginatedPagesRange(
     totalPageButtons,
@@ -93,7 +89,7 @@ const Pagination = ({
 
   return (
     <React.Fragment>
-      <div className="Pagination__data">{renderContent()}</div>
+      <div className="Pagination__data">{renderedData}</div>
 
       <div className="Pagination__page-group">
         <BiLeftArrow

@@ -18,6 +18,8 @@ const searchParamsReducer = (state = searchParams, action) => {
         ...state,
         [action.payload.param]: action.payload.value,
       };
+    case types.UPDATE_ALL_SEARCH_PARAMS:
+      return action.payload;
     case types.UPDATE_COUNTRY_CODE:
       return { ...state, country: action.payload.value };
     default:
