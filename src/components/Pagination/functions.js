@@ -15,7 +15,7 @@ const updateHistoryForward = (totalPageButtons, currentPageButton, update) => {
 
   const adjustedPageButton = Math.min(nextPageButton, totalPageButtons);
 
-  update(`/${adjustedPageButton}`);
+  update(adjustedPageButton);
 };
 
 const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
@@ -31,7 +31,7 @@ const updateHistoryBackward = (currentPageButton, update) => {
 
   const adjustedPageButton = Math.max(1, previousPageButton);
 
-  update(`/${adjustedPageButton}`);
+  update(adjustedPageButton);
 };
 
 const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
@@ -42,11 +42,11 @@ const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
 
 const updateHistorySpecific = (totalPageButtons, pageNumber, update) => {
   if (pageNumber <= 1) {
-    update(`/`);
+    update(1);
   }
 
   if (pageNumber <= totalPageButtons) {
-    update(`/${pageNumber}`);
+    update(pageNumber);
   }
 };
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 
+import navigateFunctionContext from "../../views/JobsPage/navigateFunctionContext";
 import {
   goToNextPageButton,
   goToPreviousPageButton,
@@ -24,7 +23,7 @@ const Pagination = ({
   cardComponent,
   currentPageButton,
 }) => {
-  const navigate = useNavigate();
+  const navigateToPage = useContext(navigateFunctionContext);
 
   const DataCard = cardComponent;
 
@@ -79,7 +78,7 @@ const Pagination = ({
         }`}
         onClick={() => {
           goToPageButton(totalPageButtons, pageNumber, setPageButton);
-          updateHistorySpecific(totalPageButtons, pageNumber, navigate);
+          updateHistorySpecific(totalPageButtons, pageNumber, navigateToPage);
         }}
       >
         {pageNumber}
@@ -96,7 +95,7 @@ const Pagination = ({
           className="Pagination__icon Pagination__button"
           onClick={() => {
             goToPreviousPageButton(pageButton, setPageButton);
-            updateHistoryBackward(pageButton, navigate);
+            updateHistoryBackward(pageButton, navigateToPage);
           }}
         />
         {renderedPageButtons}
@@ -104,7 +103,7 @@ const Pagination = ({
           className="Pagination__icon Pagination__button "
           onClick={() => {
             goToNextPageButton(totalPageButtons, pageButton, setPageButton);
-            updateHistoryForward(totalPageButtons, pageButton, navigate);
+            updateHistoryForward(totalPageButtons, pageButton, navigateToPage);
           }}
         />
       </div>

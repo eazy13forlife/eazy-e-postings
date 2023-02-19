@@ -11,16 +11,13 @@ import { fetchLocationOptions } from "./requests.js";
 import SelectBox from "../SelectBox";
 import countryCodes from "../../countryCodes.js";
 import TextInput from "../formInputs/TextInput.js";
-import {
-  updateSearchParam,
-  updateCountryCode,
-  fetchJobData,
-} from "../../actions";
+import { updateSearchParam, updateCountryCode } from "../../actions";
 import {
   jobs,
   companies,
   locations,
 } from "../../general/staticDropdownOptions.js";
+import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,6 +37,8 @@ const Header = () => {
   const [locationValue, setLocationValue] = useState("");
 
   const [debouncedLocationValue, setDebouncedLocationValue] = useState("");
+
+  const goToJobsPage = useGoToJobsPage();
 
   const searchParams = useSelector((state) => {
     return state.searchParams;
@@ -96,9 +95,7 @@ const Header = () => {
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
-    const encodedURL = encodeURIComponent(JSON.stringify(searchParams));
-
-    navigate(`/jobs?info=${encodedURL}&page=1`);
+    goToJobsPage(searchParams, 1);
   };
 
   //renders dropdown component for our job search parameters

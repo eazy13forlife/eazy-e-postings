@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import Header from "../../components/Header/Header.js";
 import Filters from "../../components/Filters/Filters";
 import Results from "../Homepage/Results/Results.js";
 import { fetchJobData, updateAllSearchParams } from "../../actions";
+import NavigationFunctionContext from "./navigateFunctionContext";
+import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 import "./index.scss";
 
 const JobsPage = () => {
@@ -13,20 +15,30 @@ const JobsPage = () => {
 
   const [searchParams] = useSearchParams();
 
+  const goToJobsPage = useGoToJobsPage();
+
+  //encoded uri that contains our searchParams info
   const searchInfo = searchParams.get("info");
 
   const page = +searchParams.get("page");
 
+  //returns the parsed searchParams info
   const parsedSearchInfo = JSON.parse(decodeURIComponent(searchInfo));
 
-  //on initial render, update all search params(in case we just navigated to this page
-  //directly) and then get the relevant job data according to the search params
+  const navigateToPage = (page) => {
+    goToJobsPage(parsedSearchInfo, page);
+  };
+
+  //on initial render and every time searchInfo param changes values, we update all search
+  // params(in case we just navigated to this page directly) and then get the
+  //relevant job data according to the search params.When our page changes, we don't
+  //want to run this function again, because we are not fetching new job data. we are using
+  //existing job data and paginated info from there
   useEffect(() => {
-    console.log("ds");
     dispatch(updateAllSearchParams(parsedSearchInfo));
 
     dispatch(fetchJobData());
-  }, [parsedSearchInfo, page]);
+  }, [searchInfo]);
 
   return (
     <>
@@ -34,11 +46,15 @@ const JobsPage = () => {
       <main className="HomeBody">
         <div className="container">
           <Filters />
-          <Results currentPageButton={page} />
+          <NavigationFunctionContext.Provider value={navigateToPage}>
+            <Results currentPageButton={page} />
+          </NavigationFunctionContext.Provider>
         </div>
       </main>
     </>
   );
 };
+
+JobsPage.ContextType = NavigationFunctionContext;
 
 export default JobsPage;

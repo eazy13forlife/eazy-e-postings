@@ -89,7 +89,6 @@ const Filters = () => {
       default:
         return;
     }
-    dispatch(fetchJobData());
   };
 
   return (
