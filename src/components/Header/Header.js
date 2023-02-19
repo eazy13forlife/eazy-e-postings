@@ -121,7 +121,19 @@ const Header = () => {
         <h1
           className="logo"
           onClick={() => {
-            navigate("/");
+            goToJobsPage(
+              {
+                country: "us",
+                what: "",
+                company: "",
+                where: "",
+                salary_min: "",
+                salary_max: "",
+                full_time: "",
+                part_time: "",
+              },
+              1
+            );
           }}
         >
           <span className="bold">Eazy-E</span> Postings

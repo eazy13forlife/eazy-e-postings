@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useSearchParams } from "react-router-dom";
 import "./Filters.scss";
 import {
   updateSearchParam,
-  fetchJobData,
   sortByDate,
   sortByMaxSalary,
   turnOnFilter,
@@ -12,20 +11,28 @@ import {
   getUnsortedJobData,
 } from "../../actions";
 import { BsCurrencyDollar } from "react-icons/bs";
+import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 
 const Filters = () => {
   const dispatch = useDispatch();
 
+  const goToJobsPage = useGoToJobsPage();
+
+  const [queryParams] = useSearchParams();
+
   const [showFiltersButton, setShowFiltersButton] = useState(
     window.innerWidth <= 760
   );
+
   const [showHideFiltersButton, setShowHideFiltersButton] = useState(
     window.innerWidth <= 760
   );
 
-  const searchParams = useSelector((state) => {
+  const jobSearchParams = useSelector((state) => {
     return state.searchParams;
   });
+
+  const [didContractChange, setDidContractChange] = useState(false);
 
   //Whenever window resizes, check to see if we should make this component
   //mobile or desktop version
@@ -89,7 +96,21 @@ const Filters = () => {
       default:
         return;
     }
+
+    setDidContractChange(true);
   };
+
+  const onSalarySubmit = () => {
+    goToJobsPage(jobSearchParams, 1);
+  };
+
+  useEffect(() => {
+    if (didContractChange) {
+      setDidContractChange(false);
+
+      goToJobsPage(jobSearchParams, 1);
+    }
+  }, [didContractChange]);
 
   return (
     <section className="Filters">
@@ -158,10 +179,10 @@ const Filters = () => {
                 name="minimum salary"
                 id="minimum-salary"
                 placeholder="Min Salary"
-                value={searchParams.salary_min}
+                value={jobSearchParams.salary_min}
                 onKeyDown={(e) => {
                   if (e.code === "Enter") {
-                    dispatch(fetchJobData());
+                    onSalarySubmit();
                   }
                 }}
                 onChange={(e) => {
@@ -177,10 +198,10 @@ const Filters = () => {
                 className="Filters__text-input Filters__text-input-max"
                 id="maximum-salary"
                 placeholder="Max Salary"
-                value={searchParams.salary_max}
+                value={jobSearchParams.salary_max}
                 onKeyDown={(e) => {
                   if (e.code === "Enter") {
-                    dispatch(fetchJobData());
+                    onSalarySubmit();
                   }
                 }}
                 onChange={(e) => {
@@ -191,7 +212,7 @@ const Filters = () => {
             <button
               className="button-2 button-2--primary Filters__button"
               onClick={() => {
-                dispatch(fetchJobData());
+                onSalarySubmit();
               }}
             >
               Go
@@ -201,10 +222,7 @@ const Filters = () => {
 
         <div className="Filters__group">
           <p className="Filters__group-title">Contract Time:</p>
-          <div
-            className="Filters__radios-container"
-            onChange={onContractTimeChange}
-          >
+          <div className="Filters__radios-container">
             <div className="Filters__radio-group">
               <input
                 type="radio"
@@ -212,6 +230,8 @@ const Filters = () => {
                 name="contract time"
                 value="full time"
                 id="full-time"
+                onChange={onContractTimeChange}
+                checked={jobSearchParams.full_time === 1}
               />
               <label htmlFor="full-time">Full Time</label>
             </div>
@@ -222,6 +242,8 @@ const Filters = () => {
                 name="contract time"
                 value="part time"
                 id="part-time"
+                onChange={onContractTimeChange}
+                checked={jobSearchParams.part_time === 1}
               />
               <label htmlFor="part-time">Part Time</label>
             </div>
@@ -232,7 +254,10 @@ const Filters = () => {
                 name="contract time"
                 value="both"
                 id="both"
-                defaultChecked
+                onChange={onContractTimeChange}
+                checked={
+                  !jobSearchParams.full_time && !jobSearchParams.part_time
+                }
               />
               <label htmlFor="both">Both</label>
             </div>
