@@ -23,6 +23,7 @@
     padding: 1.5rem;
     padding-left: 1rem;
     text-transform: capitalize;
+    cursor: pointer;
     &:not(:last-child) {
       margin-bottom: var(--margin-small);
     }

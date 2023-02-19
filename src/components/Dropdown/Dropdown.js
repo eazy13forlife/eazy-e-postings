@@ -6,7 +6,7 @@ const Dropdown = ({ title, items, onItemClick }) => {
   let renderedItems;
 
   if (!items || !items.length) {
-    renderedItems = [<p key={1}>Not auto-finding this location</p>];
+    renderedItems = [<p key={1}>No results</p>];
   } else {
     renderedItems = items.map((item, index) => {
       return (
