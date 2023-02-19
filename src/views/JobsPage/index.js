@@ -4,12 +4,8 @@ import { useSearchParams } from "react-router-dom";
 
 import Header from "../../components/Header/Header.js";
 import Filters from "../../components/Filters/Filters";
-import Results from "../Homepage/Results/Results.js";
-import {
-  fetchJobData,
-  updateAllSearchParams,
-  throwFetchJobsError,
-} from "../../actions";
+import Results from "./Results/Results";
+import { fetchJobData, updateAllSearchParams } from "../../actions";
 import NavigationFunctionContext from "./navigateFunctionContext";
 import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 import "./index.scss";
