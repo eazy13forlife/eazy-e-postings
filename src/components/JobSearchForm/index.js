@@ -1,15 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineSearch } from "react-icons/ai";
+import { FaRegBuilding } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
 
-import "./Header.scss";
+import "./index.scss";
 import Dropdown from "../Dropdown/Dropdown.js";
+import SelectBox from "../SelectBox";
 import { fetchLocationOptions } from "./requests.js";
+import countryCodes from "../../countryCodes.js";
+import TextInput from "../formInputs/TextInput.js";
 import { updateSearchParam, updateCountryCode } from "../../actions";
-import { locations } from "../../general/staticDropdownOptions.js";
+import {
+  jobs,
+  companies,
+  locations,
+} from "../../general/staticDropdownOptions.js";
 import useGoToJobsPage from "../../hooks/useGoToJobsPage";
-import JobSearchForm from "../JobSearchForm";
 
-const Header = () => {
+const JobSearchForm = () => {
   const dispatch = useDispatch();
 
   const jobInputRef = useRef();
@@ -104,32 +113,88 @@ const Header = () => {
   };
 
   return (
-    <header className="Header">
-      <div className="container Header__container">
-        <h1
-          className="logo"
-          onClick={() => {
-            goToJobsPage(
-              {
-                country: "us",
-                what: "",
-                company: "",
-                where: "",
-                salary_min: "",
-                salary_max: "",
-                full_time: "",
-                part_time: "",
-              },
-              1
-            );
+    <form className="form" onSubmit={onSearchSubmit}>
+      <div
+        className="form__input-group"
+        onClick={() => {
+          setShowDropdownFor("what");
+        }}
+        ref={jobInputRef}
+      >
+        <AiOutlineSearch className="form__icon" />
+        <TextInput
+          className="form__input"
+          name="what"
+          placeholder="All jobs"
+          value={searchParams.what}
+          onChange={(e) => {
+            dispatch(updateSearchParam("what", e.target.value));
           }}
-        >
-          <span className="bold">Eazy-E</span> Postings
-        </h1>
-        <JobSearchForm />
+        />
+        {renderDropdown("what", "Popular Job Searches", jobs)}
       </div>
-    </header>
+
+      <div
+        className="form__input-group"
+        onClick={() => {
+          setShowDropdownFor("company");
+        }}
+        ref={companyInputRef}
+      >
+        <FaRegBuilding className="form__icon" />
+        <TextInput
+          className="form__input"
+          name="company"
+          placeholder="All Companies"
+          value={searchParams.company}
+          onChange={(e) => {
+            dispatch(updateSearchParam("company", e.target.value));
+          }}
+        />
+        {renderDropdown("company", "Popular Company Searches", companies)}
+      </div>
+
+      <div className="form__input-group">
+        <SelectBox
+          title="Country"
+          items={countryCodes}
+          onItemClick={(code) => {
+            dispatch(updateCountryCode(code));
+          }}
+          value={searchParams.country}
+        />
+      </div>
+
+      <div
+        className="form__input-group"
+        onClick={() => {
+          setShowDropdownFor("where");
+        }}
+        ref={locationInputRef}
+      >
+        <IoLocationSharp className="form__icon" />
+        <TextInput
+          className="form__input"
+          name="where"
+          placeholder="Anywhere"
+          value={searchParams.where}
+          onChange={(e) => {
+            setLocationValue(e.target.value);
+            dispatch(updateSearchParam("where", e.target.value));
+          }}
+        />
+        {renderDropdown(
+          "where",
+          "choose or search a location",
+          locationChoices
+        )}
+      </div>
+
+      <button className="button button--primary form__button" type="submit">
+        Search
+      </button>
+    </form>
   );
 };
 
-export default Header;
+export default JobSearchForm;
