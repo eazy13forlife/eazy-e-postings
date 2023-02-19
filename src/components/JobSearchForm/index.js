@@ -113,17 +113,17 @@ const JobSearchForm = () => {
   };
 
   return (
-    <form className="form" onSubmit={onSearchSubmit}>
+    <form className="JobSearchForm" onSubmit={onSearchSubmit}>
       <div
-        className="form__input-group"
+        className="JobSearchForm__input-group"
         onClick={() => {
           setShowDropdownFor("what");
         }}
         ref={jobInputRef}
       >
-        <AiOutlineSearch className="form__icon" />
+        <AiOutlineSearch className="JobSearchForm__icon" />
         <TextInput
-          className="form__input"
+          className="JobSearchForm__input"
           name="what"
           placeholder="All jobs"
           value={searchParams.what}
@@ -135,15 +135,15 @@ const JobSearchForm = () => {
       </div>
 
       <div
-        className="form__input-group"
+        className="JobSearchForm__input-group"
         onClick={() => {
           setShowDropdownFor("company");
         }}
         ref={companyInputRef}
       >
-        <FaRegBuilding className="form__icon" />
+        <FaRegBuilding className="JobSearchForm__icon" />
         <TextInput
-          className="form__input"
+          className="JobSearchForm__input"
           name="company"
           placeholder="All Companies"
           value={searchParams.company}
@@ -154,7 +154,7 @@ const JobSearchForm = () => {
         {renderDropdown("company", "Popular Company Searches", companies)}
       </div>
 
-      <div className="form__input-group">
+      <div className="JobSearchForm__input-group">
         <SelectBox
           title="Country"
           items={countryCodes}
@@ -166,15 +166,15 @@ const JobSearchForm = () => {
       </div>
 
       <div
-        className="form__input-group"
+        className="JobSearchForm__input-group"
         onClick={() => {
           setShowDropdownFor("where");
         }}
         ref={locationInputRef}
       >
-        <IoLocationSharp className="form__icon" />
+        <IoLocationSharp className="JobSearchForm__icon" />
         <TextInput
-          className="form__input"
+          className="JobSearchForm__input"
           name="where"
           placeholder="Anywhere"
           value={searchParams.where}
@@ -190,7 +190,10 @@ const JobSearchForm = () => {
         )}
       </div>
 
-      <button className="button button--primary form__button" type="submit">
+      <button
+        className="button button--primary JobSearchForm__button"
+        type="submit"
+      >
         Search
       </button>
     </form>

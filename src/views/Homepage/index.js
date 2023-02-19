@@ -40,7 +40,7 @@ const Homepage = () => {
       <main className="HomeBody">
         <div className="container">
           <Filters />
-          <Results currentPageButton={currentPage} />
+          <Results currentPage={currentPage} />
         </div>
       </main>
     </>

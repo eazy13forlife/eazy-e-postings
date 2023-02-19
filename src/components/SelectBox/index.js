@@ -50,7 +50,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
           setOpenSelectOptions(true);
         }}
       >
-        <p>{screenTitle}</p>
+        <p className="SelectBox__screen-text">{screenTitle}</p>
         <GiPlainArrow className="SelectBox__icon" />
       </div>
 

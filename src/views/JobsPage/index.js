@@ -5,7 +5,11 @@ import { useSearchParams } from "react-router-dom";
 import Header from "../../components/Header/Header.js";
 import Filters from "../../components/Filters/Filters";
 import Results from "../Homepage/Results/Results.js";
-import { fetchJobData, updateAllSearchParams } from "../../actions";
+import {
+  fetchJobData,
+  updateAllSearchParams,
+  throwFetchJobsError,
+} from "../../actions";
 import NavigationFunctionContext from "./navigateFunctionContext";
 import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 import "./index.scss";
@@ -17,12 +21,12 @@ const JobsPage = () => {
 
   const goToJobsPage = useGoToJobsPage();
 
-  //encoded uri that contains our searchParams info
+  //encoded uri string that contains our searchParams info
   const searchInfo = searchParams.get("info");
 
   let page = +searchParams.get("page");
 
-  if (page <= 0) {
+  if (page <= 0 || isNaN(page)) {
     page = 1;
   }
 

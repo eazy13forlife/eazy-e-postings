@@ -10,8 +10,8 @@ const Header = () => {
   return (
     <header className="Header">
       <div className="container Header__container">
-        <h1
-          className="logo"
+        <p
+          className="Header__logo logo"
           onClick={() => {
             goToJobsPage(
               {
@@ -29,7 +29,7 @@ const Header = () => {
           }}
         >
           <span className="bold">Eazy-E</span> Postings
-        </h1>
+        </p>
         <JobSearchForm />
       </div>
     </header>

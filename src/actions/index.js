@@ -3,7 +3,7 @@ import {
   updateCountryCode,
   updateAllSearchParams,
 } from "./searchParams.js";
-import { fetchJobData, loadJobs } from "./jobRequests.js";
+import { fetchJobData, loadJobs, throwFetchJobsError } from "./jobRequests.js";
 import { fetchUserLocation } from "./userLocation.js";
 import { sortByDate, sortByMaxSalary, getUnsortedJobData } from "./sort.js";
 import { turnOnFilter, turnOffFilter } from "./jobFilters.js";
@@ -23,4 +23,5 @@ export {
   selectJob,
   clearJobSelected,
   updateAllSearchParams,
+  throwFetchJobsError,
 };

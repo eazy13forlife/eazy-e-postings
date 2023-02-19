@@ -4,6 +4,7 @@
   background-color: var(--color-light);
   border-radius: var(--border-radius);
   position: relative;
+  cursor: pointer;
   &__screen {
     display: flex;
     justify-content: center;

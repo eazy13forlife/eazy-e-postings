@@ -1,0 +1,24 @@
+@use "../../styles/abstracts";
+
+.EntryPage {
+  min-height: 100vh;
+  background: linear-gradient(var(--color-header) 10%, white 75%);
+  padding: 2rem 0rem;
+  &__job-search {
+    margin-top: 8rem;
+  }
+  &__heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 4rem;
+  }
+  .TextInput {
+    font-size: 2rem;
+    &::placeholder {
+      font-size: 2rem;
+    }
+  }
+  .SelectBox__screen-text {
+    font-size: 2rem;
+  }
+}

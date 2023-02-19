@@ -7,6 +7,9 @@
   @include abstracts.respondMax(abstracts.$desktop) {
     height: auto;
   }
+  &__logo {
+    cursor: pointer;
+  }
   &__container {
     display: flex;
     flex-direction: column;

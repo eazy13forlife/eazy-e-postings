@@ -1,9 +1,8 @@
 @use "../../styles/abstracts";
 
-.form {
+.JobSearchForm {
   display: flex;
   justify-content: center;
-
   @include abstracts.respondMax(abstracts.$desktop) {
     flex-wrap: wrap;
     margin-top: var(--margin-extra-large);
