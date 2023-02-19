@@ -191,7 +191,7 @@ const JobSearchForm = () => {
       </div>
 
       <button
-        className="button button--primary JobSearchForm__button"
+        className="JobSearchForm__button button button--primary"
         type="submit"
       >
         Search
