@@ -18,7 +18,8 @@ const updateAllSearchParams = (paramsObj) => {
   };
 };
 
-//country code is part of the base url. It needs to be set individually.
+//country code is part of the base url. Has its own logic we need to check for before adding
+//to searchParams
 const updateCountryCode = (code) => {
   code = code.toLowerCase();
 
