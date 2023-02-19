@@ -5,7 +5,7 @@ import JobCard from "../../../components/JobCard/JobCard.js";
 import "./Results.scss";
 import Pagination from "../../../components/Pagination/Pagination.js";
 
-const Results = ({ currentPageButton }) => {
+const Results = ({ currentPage }) => {
   const jobData = useSelector((state) => {
     return state.sortedJobData;
   });
@@ -13,6 +13,10 @@ const Results = ({ currentPageButton }) => {
   const jobsLoading = useSelector((state) => {
     return state.jobsLoading;
   });
+
+  const getTotalPageButtons = () => {
+    return Math.ceil(jobData.length / 7);
+  };
 
   const renderData = () => {
     if (jobData === "error") {
@@ -23,8 +27,8 @@ const Results = ({ currentPageButton }) => {
       );
     }
 
-    if (!jobData.length) {
-      return <p className="Results__none text-large">No results found.</p>;
+    if (!jobData.length || currentPage > getTotalPageButtons()) {
+      return <p className="Results__none text-large">No results found</p>;
     }
 
     //return our pagination component which shows our data a certain amount at a time. The data it is showing is our cardComponent
@@ -42,7 +46,7 @@ const Results = ({ currentPageButton }) => {
           buttonsRange={5}
           dataLimit={7}
           cardComponent={JobCard}
-          currentPageButton={currentPageButton}
+          currentPage={currentPage}
         ></Pagination>
       </>
     );

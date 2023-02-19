@@ -20,7 +20,11 @@ const JobsPage = () => {
   //encoded uri that contains our searchParams info
   const searchInfo = searchParams.get("info");
 
-  const page = +searchParams.get("page");
+  let page = +searchParams.get("page");
+
+  if (page <= 0) {
+    page = 1;
+  }
 
   //returns the parsed searchParams info
   const parsedSearchInfo = JSON.parse(decodeURIComponent(searchInfo));
@@ -47,7 +51,7 @@ const JobsPage = () => {
         <div className="container">
           <Filters />
           <NavigationFunctionContext.Provider value={navigateToPage}>
-            <Results currentPageButton={page} />
+            <Results currentPage={page} />
           </NavigationFunctionContext.Provider>
         </div>
       </main>

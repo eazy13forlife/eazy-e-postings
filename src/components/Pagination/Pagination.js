@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 
 import navigateFunctionContext from "../../views/JobsPage/navigateFunctionContext";
 import {
-  goToNextPageButton,
-  goToPreviousPageButton,
-  goToPageButton,
+  goToNextPage,
+  goToPreviousPage,
+  goToPage,
   getPaginatedData,
   getPaginatedPagesRange,
   updateHistoryForward,
@@ -21,39 +21,37 @@ const Pagination = ({
   //max amount of data we will show on one page
   dataLimit,
   cardComponent,
-  currentPageButton,
+  currentPage,
 }) => {
   const navigateToPage = useContext(navigateFunctionContext);
 
   const DataCard = cardComponent;
 
-  const getTotalPageButtons = () => {
+  const getTotalPages = () => {
     return Math.ceil(data.length / dataLimit);
   };
 
   //the total number of page buttons we will need to store our data depending on the dataLimit
-  const [totalPageButtons, setTotalPageButtons] = useState(
-    getTotalPageButtons()
-  );
+  const [totalPages, setTotalPages] = useState(getTotalPages());
 
   //page button we are currently on
-  const [pageButton, setPageButton] = useState(currentPageButton);
+  const [page, setPage] = useState(currentPage);
 
   //when our data changes, check to see if we need to update the total number of page buttons.
   //For example, data size might be larger/smaller now
   useEffect(() => {
-    setTotalPageButtons(getTotalPageButtons());
+    setTotalPages(getTotalPages());
   }, [data]);
 
   //when we go forward and backward on history object, we get a new page paramater value
   // so we have to update our pageButton state to reflect the current page we're on,
   // otherwise it keeps the initial page value used when component first mounted
   useEffect(() => {
-    setPageButton(currentPageButton);
-  }, [currentPageButton]);
+    setPage(currentPage);
+  }, [currentPage]);
 
   //all the rendered jobs depending on the page we're on and the data limit
-  const renderedData = getPaginatedData(data, pageButton, dataLimit).map(
+  const renderedData = getPaginatedData(data, page, dataLimit).map(
     (job, index) => {
       return (
         <React.Fragment key={index}>
@@ -63,12 +61,12 @@ const Pagination = ({
     }
   );
 
-  const renderedPageButtons = getPaginatedPagesRange(
-    totalPageButtons,
+  const renderedPages = getPaginatedPagesRange(
+    totalPages,
     buttonsRange,
-    pageButton
+    page
   ).map((pageNumber, index) => {
-    const isSelected = pageButton === pageNumber;
+    const isSelected = page === pageNumber;
 
     return (
       <button
@@ -77,8 +75,8 @@ const Pagination = ({
           isSelected ? "Pagination__button--selected" : null
         }`}
         onClick={() => {
-          goToPageButton(totalPageButtons, pageNumber, setPageButton);
-          updateHistorySpecific(totalPageButtons, pageNumber, navigateToPage);
+          goToPage(totalPages, pageNumber, setPage);
+          updateHistorySpecific(totalPages, pageNumber, navigateToPage);
         }}
       >
         {pageNumber}
@@ -94,16 +92,16 @@ const Pagination = ({
         <BiLeftArrow
           className="Pagination__icon Pagination__button"
           onClick={() => {
-            goToPreviousPageButton(pageButton, setPageButton);
-            updateHistoryBackward(pageButton, navigateToPage);
+            goToPreviousPage(page, setPage);
+            updateHistoryBackward(page, navigateToPage);
           }}
         />
-        {renderedPageButtons}
+        {renderedPages}
         <BiRightArrow
           className="Pagination__icon Pagination__button "
           onClick={() => {
-            goToNextPageButton(totalPageButtons, pageButton, setPageButton);
-            updateHistoryForward(totalPageButtons, pageButton, navigateToPage);
+            goToNextPage(totalPages, page, setPage);
+            updateHistoryForward(totalPages, page, navigateToPage);
           }}
         />
       </div>

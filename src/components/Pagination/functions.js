@@ -1,61 +1,57 @@
-const goToNextPageButton = (
-  totalPageButtons,
-  currentPageButton,
-  updateButtonFunction
-) => {
-  const nextPageButton = currentPageButton + 1;
+const goToNextPage = (totalPages, currentPage, updateButtonFunction) => {
+  const nextPage = currentPage + 1;
 
-  const adjustedPageButton = Math.min(nextPageButton, totalPageButtons);
+  const adjustedPage = Math.min(nextPage, totalPages);
 
-  updateButtonFunction(adjustedPageButton);
+  updateButtonFunction(adjustedPage);
 };
 
-const updateHistoryForward = (totalPageButtons, currentPageButton, update) => {
-  const nextPageButton = currentPageButton + 1;
+const updateHistoryForward = (totalPages, currentPage, update) => {
+  const nextPage = currentPage + 1;
 
-  const adjustedPageButton = Math.min(nextPageButton, totalPageButtons);
+  const adjustedPage = Math.min(nextPage, totalPages);
 
-  update(adjustedPageButton);
+  update(adjustedPage);
 };
 
-const goToPreviousPageButton = (currentPageButton, updateButtonFunction) => {
-  const previousPageButton = currentPageButton - 1;
+const goToPreviousPage = (currentPage, updateButtonFunction) => {
+  const previousPage = currentPage - 1;
 
-  const adjustedPageButton = Math.max(1, previousPageButton);
+  const adjustedPage = Math.max(1, previousPage);
 
-  updateButtonFunction(adjustedPageButton);
+  updateButtonFunction(adjustedPage);
 };
 
-const updateHistoryBackward = (currentPageButton, update) => {
-  const previousPageButton = currentPageButton - 1;
+const updateHistoryBackward = (currentPage, update) => {
+  const previousPage = currentPage - 1;
 
-  const adjustedPageButton = Math.max(1, previousPageButton);
+  const adjustedPage = Math.max(1, previousPage);
 
-  update(adjustedPageButton);
+  update(adjustedPage);
 };
 
-const goToPageButton = (totalPageButtons, pageNumber, updateButtonFunction) => {
-  if (pageNumber >= 1 && pageNumber <= totalPageButtons) {
+const goToPage = (totalPages, pageNumber, updateButtonFunction) => {
+  if (pageNumber >= 1 && pageNumber <= totalPages) {
     updateButtonFunction(pageNumber);
   }
 };
 
-const updateHistorySpecific = (totalPageButtons, pageNumber, update) => {
+const updateHistorySpecific = (totalPages, pageNumber, update) => {
   if (pageNumber <= 1) {
     update(1);
   }
 
-  if (pageNumber <= totalPageButtons) {
+  if (pageNumber <= totalPages) {
     update(pageNumber);
   }
 };
 
 //will return an array of the job posts we should show based on our dataLimit and the current
 // page we are on.
-const getPaginatedData = (data, currentPageButton, dataLimit) => {
-  const firstItemIndex = currentPageButton * dataLimit - (dataLimit - 1) - 1;
+const getPaginatedData = (data, currentPage, dataLimit) => {
+  const firstItemIndex = currentPage * dataLimit - (dataLimit - 1) - 1;
 
-  let lastItemIndex = currentPageButton * dataLimit - 1;
+  let lastItemIndex = currentPage * dataLimit - 1;
 
   if (lastItemIndex >= data.length) {
     lastItemIndex = data.length - 1;
@@ -77,14 +73,14 @@ const getPaginatedData = (data, currentPageButton, dataLimit) => {
 //for example if buttons range is 5 and there are 13 total buttons, initially if we're on
 // pages 1-3, buttons 1-5 are displayed. When we click 4, we should move 1 button up and see
 // 2,3,4,5,6. When we click 5, we should move 2 buttons up and display  3 4 5 6 7 etc
-const getPaginatedPagesRange = (totalPageButtons, buttonsRange, pageButton) => {
+const getPaginatedPagesRange = (totalPages, buttonsRange, pageButton) => {
   //get initial min and max button values we want to display. We will start from 1 as the min.
   const initialMinValue = 1;
 
   let initialMaxValue;
 
-  if (totalPageButtons <= buttonsRange) {
-    initialMaxValue = totalPageButtons;
+  if (totalPages <= buttonsRange) {
+    initialMaxValue = totalPages;
   } else {
     initialMaxValue = buttonsRange;
   }
@@ -105,8 +101,8 @@ const getPaginatedPagesRange = (totalPageButtons, buttonsRange, pageButton) => {
     let newMaxValue = initialMaxValue + diff;
 
     // if newMaxValue exceeds or equals the total number of page buttons,then the newMaxValue should just equal the total number of page buttons.
-    if (newMaxValue >= totalPageButtons) {
-      newMaxValue = totalPageButtons;
+    if (newMaxValue >= totalPages) {
+      newMaxValue = totalPages;
     }
 
     //because the maxValue has possibly gotten smaller from previous step, we want to check
@@ -115,7 +111,7 @@ const getPaginatedPagesRange = (totalPageButtons, buttonsRange, pageButton) => {
     newMinValue = checkMinValue(
       newMinValue,
       newMaxValue,
-      totalPageButtons,
+      totalPages,
       buttonsRange
     );
 
@@ -124,16 +120,11 @@ const getPaginatedPagesRange = (totalPageButtons, buttonsRange, pageButton) => {
 };
 
 //updates minValue in range
-const checkMinValue = (
-  startRange,
-  endRange,
-  totalPageButtons,
-  buttonsRange
-) => {
+const checkMinValue = (startRange, endRange, totalPages, buttonsRange) => {
   //if the total number of page buttons is greater than our buttonsRange, this
   // means we will always be able to show the full range of buttons
   //so we  decrease our min value till we meet the range
-  if (totalPageButtons >= buttonsRange) {
+  if (totalPages >= buttonsRange) {
     while (endRange - startRange + 1 !== buttonsRange) {
       startRange = startRange - 1;
     }
@@ -141,7 +132,7 @@ const checkMinValue = (
     //our new range is the total page buttons,so we  just want to decrease minValue
     // until we've met this range
   } else {
-    while (endRange - startRange + 1 !== totalPageButtons) {
+    while (endRange - startRange + 1 !== totalPages) {
       startRange = startRange - 1;
     }
   }
@@ -166,9 +157,9 @@ const getAllRangeNumbers = (range) => {
 };
 
 export {
-  goToNextPageButton,
-  goToPreviousPageButton,
-  goToPageButton,
+  goToNextPage,
+  goToPreviousPage,
+  goToPage,
   getPaginatedData,
   getPaginatedPagesRange,
   updateHistoryForward,
