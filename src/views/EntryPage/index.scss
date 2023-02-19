@@ -5,7 +5,7 @@
   background: linear-gradient(var(--color-header) 10%, white 75%);
   padding: 2rem 0rem;
   @include abstracts.respondMax(abstracts.$mobile-large) {
-    background: linear-gradient(var(--color-header) 80%, white 95%);
+    background: var(--color-header);
   }
   &__job-search {
     margin-top: 8rem;
