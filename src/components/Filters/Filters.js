@@ -102,6 +102,7 @@ const Filters = () => {
     goToJobsPage(jobSearchParams, 1);
   };
 
+  //if contract type is changed, go to relevant route
   useEffect(() => {
     if (didContractChange) {
       setDidContractChange(false);

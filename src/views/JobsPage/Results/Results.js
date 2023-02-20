@@ -19,6 +19,29 @@ const Results = ({ currentPage }) => {
   };
 
   const renderData = () => {
+    //whenever we are fetching new jobs, show a loading jobs status on top of the data
+    //already there, if current data contains values and has no errors
+    if (jobsLoading === true || jobsLoading === null) {
+      return (
+        <>
+          <p className="Results__fetching-jobs text-large">
+            Fetching jobs tailored around your criteria. Hold on, this might
+            take a while...
+          </p>
+
+          {jobData !== "error" && jobData.length ? (
+            <Pagination
+              data={jobData}
+              buttonsRange={5}
+              dataLimit={7}
+              cardComponent={JobCard}
+              currentPage={currentPage}
+            ></Pagination>
+          ) : null}
+        </>
+      );
+    }
+
     if (jobData === "error") {
       return (
         <p className="Results__error text-large">
@@ -31,24 +54,14 @@ const Results = ({ currentPage }) => {
       return <p className="Results__none text-large">No results found</p>;
     }
 
-    //return our pagination component which shows our data a certain amount at a time. The data it is showing is our cardComponent
     return (
-      <>
-        {jobsLoading === true || jobsLoading === null ? (
-          <p className="Results__fetching-jobs text-large">
-            Fetching jobs tailored around your criteria. Hold on, this might
-            take a while...
-          </p>
-        ) : null}
-
-        <Pagination
-          data={jobData}
-          buttonsRange={5}
-          dataLimit={7}
-          cardComponent={JobCard}
-          currentPage={currentPage}
-        ></Pagination>
-      </>
+      <Pagination
+        data={jobData}
+        buttonsRange={5}
+        dataLimit={7}
+        cardComponent={JobCard}
+        currentPage={currentPage}
+      ></Pagination>
     );
   };
 

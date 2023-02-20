@@ -47,7 +47,7 @@ const JobsPage = () => {
   return (
     <>
       <Header />
-      <main className="HomeBody">
+      <main className="Results">
         <div className="container">
           <Filters />
           <NavigationFunctionContext.Provider value={navigateToPage}>

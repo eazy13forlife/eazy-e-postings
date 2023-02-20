@@ -1,0 +1,26 @@
+@use "../../styles/abstracts";
+
+.Results {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #f8f8f8;
+  .container {
+    display: flex;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      flex-direction: column;
+    }
+  }
+  .Filters {
+    flex: 1 0 0;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-bottom: var(--margin-extra-large);
+    }
+  }
+  .Results {
+    flex: 3 0 0;
+    margin-left: 5rem;
+    @include abstracts.respondMax(abstracts.$tablet-large) {
+      margin-left: 0rem;
+    }
+  }
+}
