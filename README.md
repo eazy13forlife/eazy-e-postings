@@ -28,5 +28,5 @@ https://eazy-e-postings.vercel.app/
 * Real time location search results for when user is typing a location
 
 
-## Ideas to implements
+## Ideas to implement
 * Favorited job section
