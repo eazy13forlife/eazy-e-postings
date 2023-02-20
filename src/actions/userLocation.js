@@ -41,7 +41,7 @@ const fetchUserLocation = () => {
 
       //if country code is among the ones we have access to, update our country
       //code param, update user's location, and the search param of where they are
-      dispatch(updateCountryCode(countryCode));
+      dispatch(updateSearchParam("country", countryCode));
 
       dispatch({
         type: types.FETCH_USER_LOCATION,

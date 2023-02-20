@@ -26,6 +26,10 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setScreenTitle(value);
+  }, [value]);
+
   const renderedItems = items.map((item, index) => {
     return (
       <li

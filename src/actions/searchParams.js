@@ -1,11 +1,22 @@
 import types from "./types.js";
 import countryCodes from "../countryCodes.js";
 
+// make sure country code is valid, otherwise just return u.s.a
+const checkCountryCode = (code) => {
+  let newCode = code.toLowerCase();
+
+  if (!countryCodes.includes(newCode)) {
+    newCode = "us";
+  }
+
+  return newCode;
+};
+
 const updateSearchParam = (param, value) => {
   let updatedValue = value;
 
   if (param === "country") {
-    updatedValue = updateCountryCode(updatedValue);
+    updatedValue = checkCountryCode(updatedValue);
   }
 
   return {
@@ -24,27 +35,4 @@ const updateAllSearchParams = (paramsObj) => {
   };
 };
 
-//country code is part of the base url. Has its own logic we need to check for before adding
-//to searchParams
-const updateCountryCode = (code) => {
-  code = code.toLowerCase();
-
-  let value;
-
-  if (countryCodes.includes(code)) {
-    value = code;
-    //if we don't have access to user's countyCode, use usa.
-  } else {
-    value = "us";
-  }
-
-  return {
-    type: types.UPDATE_COUNTRY_CODE,
-    payload: {
-      param: "country",
-      value: value,
-    },
-  };
-};
-
-export { updateSearchParam, updateCountryCode, updateAllSearchParams };
+export { updateSearchParam, updateAllSearchParams };

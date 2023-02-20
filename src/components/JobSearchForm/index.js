@@ -10,7 +10,7 @@ import SelectBox from "../SelectBox";
 import { fetchLocationOptions } from "./requests.js";
 import countryCodes from "../../countryCodes.js";
 import TextInput from "../formInputs/TextInput.js";
-import { updateSearchParam, updateCountryCode } from "../../actions";
+import { updateSearchParam } from "../../actions";
 import {
   jobs,
   companies,
@@ -159,7 +159,7 @@ const JobSearchForm = () => {
           title="Country"
           items={countryCodes}
           onItemClick={(code) => {
-            dispatch(updateCountryCode(code));
+            dispatch(updateSearchParam("country", code));
           }}
           value={searchParams.country}
         />
