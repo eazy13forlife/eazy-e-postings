@@ -44,7 +44,7 @@ const fetchJobData = () => {
 };
 
 //creates urlString needed to make a request to Adzuna search api. Takes into
-// account all search paramaters we have selected
+// account all search parameters we have selected
 const createUrlString = (searchParamsObject) => {
   const allParams = Object.keys(searchParamsObject);
 
