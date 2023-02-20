@@ -209,7 +209,7 @@ const Filters = () => {
               />
             </div>
             <button
-              className="button-2 button-2--primary Filters__button"
+              className="Filters__button button-2 button-2--primary"
               onClick={() => {
                 onSalarySubmit();
               }}

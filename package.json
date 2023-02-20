@@ -9,7 +9,6 @@
     "axios": "^1.3.3",
     "clearbit": "^1.3.5",
     "express": "^4.18.2",
-    "formik": "^2.2.9",
     "moment": "^2.29.4",
     "ncu": "^0.2.1",
     "npm-check-updates": "^16.7.4",

@@ -45,13 +45,14 @@
   }
   &__icon {
     position: absolute;
-    top: 2.35rem;
+    top: 2.65rem;
     left: 1rem;
     transform: translatey(-65%);
   }
   &__button {
     align-self: start;
     margin-top: var(--margin-small);
+    cursor: pointer;
     @include abstracts.respondMax(abstracts.$tablet-large) {
       align-self: stretch;
       margin-top: var(--margin-small);
@@ -68,13 +69,16 @@
     padding: 0.8rem;
     padding-left: 3rem;
     border: 1px solid var(--color-text);
+    font-family: var(--font-family-2);
+    font-weight: 400;
+    font-size: 1.6rem;
     @include abstracts.respondMax(abstracts.$tablet-large) {
       margin-top: var(--margin-small);
       width: 100%;
     }
     &::placeholder {
       font-family: var(--font-family-2);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1.5rem;
       line-height: 1.3rem;
       color: var(--color-text);

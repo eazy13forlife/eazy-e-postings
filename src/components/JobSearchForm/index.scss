@@ -45,6 +45,11 @@
     }
   }
   .TextInput {
+    font-size: 1.8rem;
+    &::placeholder {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
     @include abstracts.respondMax(abstracts.$tablet-small) {
       width: 100%;
     }
