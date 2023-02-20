@@ -1,12 +1,4 @@
-const goToNextPage = (totalPages, currentPage, updateButtonFunction) => {
-  const nextPage = currentPage + 1;
-
-  const adjustedPage = Math.min(nextPage, totalPages);
-
-  updateButtonFunction(adjustedPage);
-};
-
-const updateHistoryForward = (totalPages, currentPage, update) => {
+const goToNextPage = (totalPages, currentPage, update) => {
   const nextPage = currentPage + 1;
 
   const adjustedPage = Math.min(nextPage, totalPages);
@@ -14,15 +6,7 @@ const updateHistoryForward = (totalPages, currentPage, update) => {
   update(adjustedPage);
 };
 
-const goToPreviousPage = (currentPage, updateButtonFunction) => {
-  const previousPage = currentPage - 1;
-
-  const adjustedPage = Math.max(1, previousPage);
-
-  updateButtonFunction(adjustedPage);
-};
-
-const updateHistoryBackward = (currentPage, update) => {
+const goToPreviousPage = (currentPage, update) => {
   const previousPage = currentPage - 1;
 
   const adjustedPage = Math.max(1, previousPage);
@@ -30,13 +14,7 @@ const updateHistoryBackward = (currentPage, update) => {
   update(adjustedPage);
 };
 
-const goToPage = (totalPages, pageNumber, updateButtonFunction) => {
-  if (pageNumber >= 1 && pageNumber <= totalPages) {
-    updateButtonFunction(pageNumber);
-  }
-};
-
-const updateHistorySpecific = (totalPages, pageNumber, update) => {
+const goToPage = (totalPages, pageNumber, update) => {
   if (pageNumber <= 1) {
     update(1);
   }
@@ -71,8 +49,8 @@ const getPaginatedData = (data, currentPage, dataLimit) => {
 //returns an array of the min and max numbers of our buttonsRange, so we can display them.
 //i only want this function to take effect after page button 3
 //for example if buttons range is 5 and there are 13 total buttons, initially if we're on
-// pages 1-3, buttons 1-5 are displayed. When we click 4, we should move 1 button up and see
-// 2,3,4,5,6. When we click 5, we should move 2 buttons up and display  3 4 5 6 7 etc
+// pages 1-3, buttons 1-5 are displayed, but when we click 4, we should move 1 button up and
+// see 2,3,4,5,6. When we click 5, we should move 2 buttons up and display  3 4 5 6 7 etc
 const getPaginatedPagesRange = (totalPages, buttonsRange, pageButton) => {
   //get initial min and max button values we want to display. We will start from 1 as the min.
   const initialMinValue = 1;
@@ -157,12 +135,9 @@ const getAllRangeNumbers = (range) => {
 };
 
 export {
+  getPaginatedData,
+  getPaginatedPagesRange,
   goToNextPage,
   goToPreviousPage,
   goToPage,
-  getPaginatedData,
-  getPaginatedPagesRange,
-  updateHistoryForward,
-  updateHistoryBackward,
-  updateHistorySpecific,
 };

@@ -8,6 +8,7 @@ import Results from "./Results/Results";
 import { fetchJobData, updateAllSearchParams } from "../../actions";
 import NavigationFunctionContext from "./navigateFunctionContext";
 import useGoToJobsPage from "../../hooks/useGoToJobsPage";
+import defaultSearchInfo from "../../general/defaultSearchInfo";
 import "./index.scss";
 
 const JobsPage = () => {
@@ -27,7 +28,14 @@ const JobsPage = () => {
   }
 
   //returns the parsed searchParams info
-  const parsedSearchInfo = JSON.parse(decodeURIComponent(searchInfo));
+  let parsedSearchInfo;
+
+  //if error exists getting this data, just return our empty search object
+  try {
+    parsedSearchInfo = JSON.parse(decodeURIComponent(searchInfo));
+  } catch {
+    parsedSearchInfo = defaultSearchInfo;
+  }
 
   const navigateToPage = (page) => {
     goToJobsPage(parsedSearchInfo, page);
@@ -37,7 +45,7 @@ const JobsPage = () => {
   // params(in case we just navigated to this page directly) and then get the
   //relevant job data according to the search params.When our page changes, we don't
   //want to run this function again, because we are not fetching new job data. we are using
-  //existing job data and paginated info from there
+  //existing job data and paginating info from there
   useEffect(() => {
     dispatch(updateAllSearchParams(parsedSearchInfo));
 

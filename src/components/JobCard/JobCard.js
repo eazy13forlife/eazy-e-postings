@@ -25,7 +25,7 @@ const JobCard = ({ data }) => {
 
   const titleUrl = title.replace(/[\s/]/g, "-");
 
-  const renderContract = () => {
+  const renderContractText = () => {
     if (contractTime === "full_time") {
       return "Full Time";
     } else if (contractTime === "part_time") {
@@ -53,7 +53,7 @@ const JobCard = ({ data }) => {
             <GoGlobe className="JobCard__icon" />
             <p className="JobCard__location text-small">{jobLocation}</p>
           </div>
-          <p className="JobCard__contract text-small">{renderContract()}</p>
+          <p className="JobCard__contract text-small">{renderContractText()}</p>
         </div>
       </div>
       <div className="JobCard__date-salary">

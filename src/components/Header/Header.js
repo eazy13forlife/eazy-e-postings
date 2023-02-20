@@ -3,6 +3,7 @@ import React from "react";
 import "./Header.scss";
 import useGoToJobsPage from "../../hooks/useGoToJobsPage";
 import JobSearchForm from "../JobSearchForm";
+import defaultSearchInfo from "../../general/defaultSearchInfo";
 
 const Header = () => {
   const goToJobsPage = useGoToJobsPage();
@@ -13,19 +14,7 @@ const Header = () => {
         <p
           className="Header__logo logo"
           onClick={() => {
-            goToJobsPage(
-              {
-                country: "us",
-                what: "",
-                company: "",
-                where: "",
-                salary_min: "",
-                salary_max: "",
-                full_time: "",
-                part_time: "",
-              },
-              1
-            );
+            goToJobsPage(defaultSearchInfo, 1);
           }}
         >
           <span className="bold">Eazy-E</span> Postings

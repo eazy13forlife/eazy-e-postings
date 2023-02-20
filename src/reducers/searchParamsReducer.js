@@ -1,17 +1,7 @@
 import types from "../actions/types.js";
+import defaultSearchInfo from "../general/defaultSearchInfo";
 
-const searchParams = {
-  country: "us",
-  what: "",
-  company: "",
-  where: "",
-  salary_min: "",
-  salary_max: "",
-  full_time: "",
-  part_time: "",
-};
-
-const searchParamsReducer = (state = searchParams, action) => {
+const searchParamsReducer = (state = defaultSearchInfo, action) => {
   switch (action.type) {
     case types.UPDATE_SEARCH_PARAM:
       return {

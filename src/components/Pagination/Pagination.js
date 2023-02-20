@@ -2,14 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 
 import navigateFunctionContext from "../../views/JobsPage/navigateFunctionContext";
 import {
+  getPaginatedData,
+  getPaginatedPagesRange,
   goToNextPage,
   goToPreviousPage,
   goToPage,
-  getPaginatedData,
-  getPaginatedPagesRange,
-  updateHistoryForward,
-  updateHistoryBackward,
-  updateHistorySpecific,
 } from "./functions.js";
 
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
@@ -31,21 +28,18 @@ const Pagination = ({
     return Math.ceil(data.length / dataLimit);
   };
 
-  //the total number of page buttons we will need to store our data depending on the dataLimit
+  //the total number of pages to store our data, depending on the dataLimit
   const [totalPages, setTotalPages] = useState(getTotalPages());
 
-  //page button we are currently on
+  //page we are currently on
   const [page, setPage] = useState(currentPage);
 
-  //when our data changes, check to see if we need to update the total number of page buttons.
+  //when our data changes, update the total number of pages,if necessary.
   //For example, data size might be larger/smaller now
   useEffect(() => {
     setTotalPages(getTotalPages());
   }, [data]);
 
-  //when we go forward and backward on history object, we get a new page paramater value
-  // so we have to update our pageButton state to reflect the current page we're on,
-  // otherwise it keeps the initial page value used when component first mounted
   useEffect(() => {
     setPage(currentPage);
   }, [currentPage]);
@@ -61,7 +55,7 @@ const Pagination = ({
     }
   );
 
-  const renderedPages = getPaginatedPagesRange(
+  const renderedPageButtons = getPaginatedPagesRange(
     totalPages,
     buttonsRange,
     page
@@ -75,8 +69,7 @@ const Pagination = ({
           isSelected ? "Pagination__button--selected" : null
         }`}
         onClick={() => {
-          goToPage(totalPages, pageNumber, setPage);
-          updateHistorySpecific(totalPages, pageNumber, navigateToPage);
+          goToPage(totalPages, pageNumber, navigateToPage);
         }}
       >
         {pageNumber}
@@ -92,16 +85,14 @@ const Pagination = ({
         <BiLeftArrow
           className="Pagination__icon Pagination__button"
           onClick={() => {
-            goToPreviousPage(page, setPage);
-            updateHistoryBackward(page, navigateToPage);
+            goToPreviousPage(page, navigateToPage);
           }}
         />
-        {renderedPages}
+        {renderedPageButtons}
         <BiRightArrow
           className="Pagination__icon Pagination__button "
           onClick={() => {
-            goToNextPage(totalPages, page, setPage);
-            updateHistoryForward(totalPages, page, navigateToPage);
+            goToNextPage(totalPages, page, navigateToPage);
           }}
         />
       </div>

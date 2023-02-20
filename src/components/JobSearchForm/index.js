@@ -64,7 +64,7 @@ const JobSearchForm = () => {
   }, []);
 
   //sets debouncedLocationValue after a certain time passes without user typing a
-  //character in order to avoid too many requests.
+  //character, in order to avoid too many requests.
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedLocationValue(locationValue);
@@ -87,15 +87,14 @@ const JobSearchForm = () => {
     }
   }, [debouncedLocationValue]);
 
-  //when we click search get an encoded url and go to the url below which will open
-  //up JobsPage component
+  //reroute to the correct page
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
     goToJobsPage(searchParams, 1);
   };
 
-  //renders dropdown component for our job type, company and location
+  //renders dropdown component for job type, company and location text inputs
   const renderDropdown = (paramName, dropTitle, dropItems) => {
     if (paramName === showDropdownFor) {
       return (
