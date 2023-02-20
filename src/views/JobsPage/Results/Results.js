@@ -51,7 +51,7 @@ const Results = ({ currentPage }) => {
     }
 
     if (!jobData.length || currentPage > getTotalPageButtons()) {
-      return <p className="Results__none text-large">No results found</p>;
+      return <p className="text-large">No results found</p>;
     }
 
     return (

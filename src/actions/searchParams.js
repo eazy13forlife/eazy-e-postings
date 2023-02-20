@@ -2,11 +2,17 @@ import types from "./types.js";
 import countryCodes from "../countryCodes.js";
 
 const updateSearchParam = (param, value) => {
+  let updatedValue = value;
+
+  if (param === "country") {
+    updatedValue = updateCountryCode(updatedValue);
+  }
+
   return {
     type: types.UPDATE_SEARCH_PARAM,
     payload: {
       param,
-      value,
+      value: updatedValue,
     },
   };
 };
