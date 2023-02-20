@@ -27,6 +27,12 @@ https://eazy-e-postings.vercel.app/
 * User can choose among predefined job roles like marketing and sales, predefined companies like Google and predefined locations like New York, NY.
 * Real time location search results for when user is typing a location
 
+## My Process
+### Design
+I created this design on figma. I was going for a clean and minimalist design. And, in addition, I  wanted to add some animation, which I was able to do for some of the buttons.
+
+### Purpose
+I wanted to become more familiar with redux and redux-thunk middleware and just try out new techniques I hadn't used before, like context and custom hooks.
 
 ## Ideas to implement
 * Favorited job section
