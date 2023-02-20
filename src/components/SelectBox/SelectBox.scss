@@ -20,9 +20,11 @@
   }
   &__screen-text {
     font-size: 1.7rem;
+    color: var(--color-text);
   }
   &__icon {
     margin-left: 1rem;
+    font-size: 1.8rem;
   }
   &__list {
     text-transform: uppercase;
