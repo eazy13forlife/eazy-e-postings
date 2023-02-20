@@ -32,7 +32,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
 
   const renderedItems = items.map((item, index) => {
     return (
-      <li
+      <button
         className="SelectBox__item"
         key={index}
         onClick={() => {
@@ -42,13 +42,13 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
         }}
       >
         {item}
-      </li>
+      </button>
     );
   });
 
   return (
     <div className="SelectBox" ref={selectBoxRef}>
-      <div
+      <button
         className="SelectBox__screen"
         onClick={() => {
           setOpenSelectOptions(true);
@@ -56,7 +56,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
       >
         <p className="SelectBox__screen-text">{screenTitle}</p>
         <GiPlainArrow className="SelectBox__icon" />
-      </div>
+      </button>
 
       <ul
         className={`SelectBox__list ${

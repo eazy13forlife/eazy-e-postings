@@ -6,11 +6,15 @@ const Dropdown = ({ title, items, onItemClick }) => {
   let renderedItems;
 
   if (!items || !items.length) {
-    renderedItems = [<p key={1}>No results</p>];
+    renderedItems = [
+      <p className="text-regular-2" key={1}>
+        No results
+      </p>,
+    ];
   } else {
     renderedItems = items.map((item, index) => {
       return (
-        <li
+        <button
           className="Dropdown__item"
           key={index}
           onClick={(e) => {
@@ -18,7 +22,7 @@ const Dropdown = ({ title, items, onItemClick }) => {
           }}
         >
           {item}
-        </li>
+        </button>
       );
     });
   }

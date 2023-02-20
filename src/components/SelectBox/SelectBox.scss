@@ -6,12 +6,17 @@
   position: relative;
   cursor: pointer;
   &__screen {
+    background: none;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     width: 100%;
     text-transform: uppercase;
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
   }
   &__screen-text {
     font-size: 1.7rem;
@@ -36,7 +41,16 @@
     }
   }
   &__item {
+    width: 100%;
+    background: none;
+    border: none;
     padding: 1rem 2rem;
+    color: var(--color-dark);
+    font-size: 1.85rem;
+    cursor: pointer;
+    &:first-of-type {
+      margin-top: 1rem;
+    }
     &:hover {
       background-color: var(--color-tertiary);
     }

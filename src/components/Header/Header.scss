@@ -10,9 +10,7 @@
   &__logo {
     cursor: pointer;
   }
-  &__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .JobSearchForm {
+    margin-top: 3rem;
   }
 }

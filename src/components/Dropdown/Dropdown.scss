@@ -20,9 +20,15 @@
     z-index: 5;
   }
   &__item {
+    background: none;
+    width: 100%;
+    border: none;
     padding: 1.5rem;
     padding-left: 1rem;
     text-transform: capitalize;
+    text-align: left;
+    color: var(--color-dark);
+    font-size: 1.6rem;
     cursor: pointer;
     &:not(:last-child) {
       margin-bottom: var(--margin-small);

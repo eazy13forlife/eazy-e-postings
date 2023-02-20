@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className="Header">
-      <div className="container Header__container">
+      <div className="Header__container container">
         <p
           className="Header__logo logo"
           onClick={() => {
