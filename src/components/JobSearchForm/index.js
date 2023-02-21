@@ -94,6 +94,14 @@ const JobSearchForm = () => {
     goToJobsPage(searchParams, 1);
   };
 
+  const onInputClick = (paramName) => {
+    if (showDropdownFor === paramName) {
+      setShowDropdownFor(null);
+    } else {
+      setShowDropdownFor(paramName);
+    }
+  };
+
   //renders dropdown component for job type, company and location text inputs
   const renderDropdown = (paramName, dropTitle, dropItems) => {
     if (paramName === showDropdownFor) {
@@ -113,19 +121,16 @@ const JobSearchForm = () => {
 
   return (
     <form className="JobSearchForm" onSubmit={onSearchSubmit}>
-      <div
-        className="JobSearchForm__input-group"
-        onClick={() => {
-          setShowDropdownFor("what");
-        }}
-        ref={jobInputRef}
-      >
+      <div className="JobSearchForm__input-group" ref={jobInputRef}>
         <AiOutlineSearch className="JobSearchForm__icon" />
         <TextInput
           className="JobSearchForm__input"
           name="what"
           placeholder="All jobs"
           value={searchParams.what}
+          onClick={() => {
+            onInputClick("what");
+          }}
           onChange={(e) => {
             dispatch(updateSearchParam("what", e.target.value));
           }}
@@ -133,18 +138,15 @@ const JobSearchForm = () => {
         {renderDropdown("what", "Popular Job Searches", jobs)}
       </div>
 
-      <div
-        className="JobSearchForm__input-group"
-        onClick={() => {
-          setShowDropdownFor("company");
-        }}
-        ref={companyInputRef}
-      >
+      <div className="JobSearchForm__input-group" ref={companyInputRef}>
         <FaRegBuilding className="JobSearchForm__icon" />
         <TextInput
           className="JobSearchForm__input"
           name="company"
           placeholder="All Companies"
+          onClick={() => {
+            onInputClick("company");
+          }}
           value={searchParams.company}
           onChange={(e) => {
             dispatch(updateSearchParam("company", e.target.value));
@@ -164,19 +166,16 @@ const JobSearchForm = () => {
         />
       </div>
 
-      <div
-        className="JobSearchForm__input-group"
-        onClick={() => {
-          setShowDropdownFor("where");
-        }}
-        ref={locationInputRef}
-      >
+      <div className="JobSearchForm__input-group" ref={locationInputRef}>
         <IoLocationSharp className="JobSearchForm__icon" />
         <TextInput
           className="JobSearchForm__input"
           name="where"
           placeholder="Anywhere"
           value={searchParams.where}
+          onClick={() => {
+            onInputClick("where");
+          }}
           onChange={(e) => {
             setLocationValue(e.target.value);
             dispatch(updateSearchParam("where", e.target.value));

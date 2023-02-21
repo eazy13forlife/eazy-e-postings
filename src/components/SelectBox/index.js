@@ -48,7 +48,13 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
   });
 
   return (
-    <div className="SelectBox" ref={selectBoxRef}>
+    <div
+      className="SelectBox"
+      ref={selectBoxRef}
+      onClick={() => {
+        setOpenSelectOptions(!openSelectOptions);
+      }}
+    >
       <button
         className="SelectBox__screen"
         type="button"
