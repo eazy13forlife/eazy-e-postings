@@ -27,10 +27,10 @@ const JobsPage = () => {
     page = 1;
   }
 
-  //returns the parsed searchParams info
   let parsedSearchInfo;
 
-  //if error exists getting this data, just return our empty search object
+  //if error exists getting searchInfo data from encoded
+  //uri, just return our default search object
   try {
     parsedSearchInfo = JSON.parse(decodeURIComponent(searchInfo));
   } catch {
@@ -43,8 +43,10 @@ const JobsPage = () => {
 
   //on initial render and every time searchInfo param changes values, we update all search
   // params(in case we just navigated to this page directly) and then get the
-  //relevant job data according to the search params.When our page changes, we don't
-  //want to run this function again, because we are not fetching new job data. we are using
+  //relevant job data according to the search params. When
+  //page number changes for this search info, we don't
+  //want to run this function again, because we
+  //don't want to fetch new job data. we are using
   //existing job data and paginating info from there
   useEffect(() => {
     dispatch(updateAllSearchParams(parsedSearchInfo));
