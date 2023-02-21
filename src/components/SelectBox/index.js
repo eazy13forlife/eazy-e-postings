@@ -35,6 +35,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
       <button
         className="SelectBox__item"
         key={index}
+        type="button"
         onClick={() => {
           setOpenSelectOptions(false);
           setScreenTitle(item);
