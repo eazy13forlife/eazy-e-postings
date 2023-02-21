@@ -51,6 +51,7 @@ const SelectBox = ({ items, title, value, onItemClick }) => {
     <div className="SelectBox" ref={selectBoxRef}>
       <button
         className="SelectBox__screen"
+        type="button"
         onClick={() => {
           setOpenSelectOptions(true);
         }}

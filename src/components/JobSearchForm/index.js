@@ -90,7 +90,7 @@ const JobSearchForm = () => {
   //reroute to the correct page
   const onSearchSubmit = (e) => {
     e.preventDefault();
-
+    console.log("cap");
     goToJobsPage(searchParams, 1);
   };
 
