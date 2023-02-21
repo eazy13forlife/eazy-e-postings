@@ -2,7 +2,7 @@ import types from "./types.js";
 import axios from "axios";
 
 import countryCodes from "../countryCodes.js";
-import { updateCountryCode, updateSearchParam } from "./searchParams.js";
+import { updateSearchParam } from "./searchParams.js";
 
 //gets where the user is located right when app loads, so we can make a request
 //with this initial information.
