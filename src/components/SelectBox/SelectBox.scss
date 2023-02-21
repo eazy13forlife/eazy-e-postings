@@ -39,6 +39,7 @@
     box-shadow: var(--box-shadow);
     padding: 1.8rem 1.5rem;
     z-index: 5;
+    border: 0.6px solid var(--color-text);
     &--closed {
       display: none;
     }

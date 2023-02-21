@@ -5,6 +5,7 @@
   box-shadow: var(--box-shadow);
   height: 30rem;
   overflow: scroll;
+  border: 0.6px solid var(--color-text);
   &__title {
     font-family: var(--font-family-1);
     font-weight: 400;
